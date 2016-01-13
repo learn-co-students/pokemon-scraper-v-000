@@ -14,7 +14,13 @@ class Pokemon
 
   def self.save(name, type, db)
     
-    db.execute("INSERT INTO pokemon (name, type) VALUES (name, type)")
+    db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type)
+  
+  end
+
+  def self.find(id, db)
+    
+    db.execute("SELECT id, name, type FROM pokemon WHERE pokemon.id = (?)", id).flatten
   
   end
 
