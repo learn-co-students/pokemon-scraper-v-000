@@ -1,4 +1,5 @@
 require_relative "spec_helper"
+require 'pry'
 
 describe "Pokemon" do
   before do
@@ -32,6 +33,7 @@ describe "Pokemon" do
       newer_pokemon = Pokemon.save("Pikachu", "fire", @db)
 
       pikachu_from_db = Pokemon.find(1, @db)
+      # binding.pry
       expect(pikachu_from_db).to eq([1, "Pikachu", "fire"])
     end
   end
