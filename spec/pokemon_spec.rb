@@ -19,7 +19,7 @@ describe "Pokemon" do
   end
 
   describe ".save" do
-    it 'saves and instance of a pokemon with the correct id' do
+    it 'saves an instance of a pokemon with the correct id' do
       new_pokemon = Pokemon.save("Pikachu", "fire", @db)
 
       pikachu_from_db = @db.execute("SELECT * FROM pokemon WHERE name = 'Pikachu'")
