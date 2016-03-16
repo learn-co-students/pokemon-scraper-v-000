@@ -6,17 +6,14 @@ class Pokemon
     @name = name
     @type = type
     @db = db
-
-    #database_connection = SQLite3::Database.new(db)
   end
 
   def self.save(poke_name, poke_type, db)
-    pokemons = SQLite3::Database.new(db)
-#    db.execute("CREATE TABLE IF NOT EXISTS pokemons (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, type TEXT)")
-    db.execute("INSERT INTO pokemons (name, type) VALUES (?,?)",poke_name,poke_type)
+    db.execute("CREATE TABLE IF NOT EXISTS pokemon (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, type TEXT)")
+    db.execute("INSERT INTO pokemon (name, type) VALUES (?,?)",poke_name,poke_type)
   end
 
   def self.find(id, db)
-    db.execute("SELECT * FROM pokemons GROUP BY #{id}").flatten
+    db.execute("SELECT * FROM pokemon GROUP BY #{id}").flatten
   end
 end
