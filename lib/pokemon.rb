@@ -1,5 +1,4 @@
 class Pokemon
-  @@all = []
   attr_accessor :name, :type
   attr_reader :id, :db
 
@@ -9,6 +8,13 @@ class Pokemon
     @type = type
     @db = db
   end
+
+  # #initialize alternative on learn:
+
+  # def initialize(attr_array, db)
+  #   @id, @name, @type, @hp = *attr_array
+  #   @db = db
+  # end
 
   def self.save(name, type, db)
     db.execute("INSERT INTO pokemon (name, type) VALUES (?,?)", [name,type])
