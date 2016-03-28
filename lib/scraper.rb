@@ -8,6 +8,7 @@ class Scraper
     self.all_pokemon = catch_em_all
   end
 
+  # this method is necessary to make the solution cooler.
   def catch_em_all
     self.all_pokemon = parsed_file.css(".infocard-tall")
   end
