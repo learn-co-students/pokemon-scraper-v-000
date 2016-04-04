@@ -1,5 +1,6 @@
 class Pokemon
 
-  def new(name, type, db)
+  def new(id, name, type, db)
+
   end
 end
