@@ -1,4 +1,4 @@
-require 'pry'
+
 
 class Pokemon
 
@@ -18,7 +18,6 @@ class Pokemon
   
 
   def self.find(id, db)
-    binding.pry
     db.execute("SELECT * FROM pokemon WHERE id = " + id.to_s)
   end
  
