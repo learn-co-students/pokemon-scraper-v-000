@@ -1,5 +1,5 @@
 class Pokemon
-  attr_accessor :id, :name, :type, :db
+  attr_accessor :id, :name, :type, :hp, :db
 
   def initialize(id, name, type, db)
     @id = id
@@ -20,7 +20,7 @@ class Pokemon
 
 # not sure if this UPDATE statement will work. Will check with solution.
   def self.alter_hp(new_hp)
-    db.execute("UPDATE pokemon SET pokemon.hp = new_hp WHERE pokemon.name = self.name")
+    db.execute("UPDATE pokemon SET pokemon.hp = ? WHERE pokemon.id = ?", new_hp, id)
   end
 
 end
