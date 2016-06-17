@@ -1,3 +1,3 @@
 CREATE TABLE IF NOT EXISTS pokemon(id INTEGER PRIMARY KEY, name TEXT, type TEXT);
 ALTER TABLE pokemon ADD COLUMN hp INTEGER;
-INSERT INTO pokemon (hp) VALUE (60);
+INSERT INTO pokemon (hp,id) VALUE (60, ?)
