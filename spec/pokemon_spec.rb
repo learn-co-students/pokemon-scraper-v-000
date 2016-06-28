@@ -41,13 +41,12 @@ describe "Pokemon" do
     # The find method creates a new Pokemon after selecting their row from the database by their id number.
     let(:pikachu){Pokemon.find(25, @db)}
     let(:magikarp){Pokemon.find(129, @db)}
-
+    pending "Implement the bonus section of the README. Then remove this line."
     before do
       @sql_runner.execute_create_hp_column
     end
 
     it "knows that a pokemon have a default hp of 60" do
-      pending "Implement the bonus section of the README. Then remove this line."
       expect(@db.execute("knows_default_hp").flatten.first).to eq(60)
     end
 
