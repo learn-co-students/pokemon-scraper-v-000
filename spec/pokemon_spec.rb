@@ -67,4 +67,4 @@ describe "Pokemon" do
 #       expect(@db.execute("alter_hp").flatten.first).to eq(0)
 #     end
 #   end
-# end
+ end
