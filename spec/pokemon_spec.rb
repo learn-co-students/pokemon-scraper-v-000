@@ -37,6 +37,7 @@ describe "Pokemon" do
     end
   end
 
+=begin
   describe "BONUS" do
     # The find method creates a new Pokemon after selecting their row from the database by their id number.
     let(:pikachu){Pokemon.find(25, @db)}
@@ -68,4 +69,5 @@ describe "Pokemon" do
       expect(@db.execute("alter_hp").flatten.first).to eq(0)
     end
   end
+=end
 end
