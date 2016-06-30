@@ -1,3 +1,5 @@
+require 'pry'
+
 class Scraper
   attr_accessor :file, :parsed_file, :all_pokemon, :db
 
@@ -27,5 +29,5 @@ class Scraper
       Pokemon.save(pk_name, pk_type, db)
     end
   end
-
+#binding.pry
 end
