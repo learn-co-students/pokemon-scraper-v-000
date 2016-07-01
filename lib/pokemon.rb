@@ -1,7 +1,3 @@
-require 'pry'
-
-
-
 class Pokemon
   attr_accessor :id, :name, :type, :db, :hp
 
@@ -12,6 +8,7 @@ class Pokemon
     @name = name
     @type = type
     @db = db
+    @hp = hp
   end
 
   def self.all
@@ -29,13 +26,9 @@ class Pokemon
     db.execute("SELECT * FROM pokemon WHERE id = ?", number)
   end
 
-  def alter_hp(hp_value)
-    @db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", hp_value, @id)
-    @hp = hp_value
-#    self.first[3] = hp_value
+  def self.alter_hp(hp_value, db, id_num)
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", hp_value, id_num)
+
   end
-
-#binding.pry
-
 
 end

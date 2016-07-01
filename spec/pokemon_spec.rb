@@ -59,7 +59,8 @@ describe "Pokemon" do
     it "alters Pikachu's hp to 59" do
 #      pending "Implement the bonus section of the README. Then remove this line."
 
-      pikachu.alter_hp(59)
+#      pikachu.alter_hp(59)
+      Pokemon.alter_hp(59, @db, 25)
       expect(@db.execute("SELECT hp FROM pokemon WHERE id = 25").flatten.first).to eq(59)
     end
 
@@ -67,7 +68,8 @@ describe "Pokemon" do
     it "alters Magikarp's hp" do
 #      pending "Implement the bonus section of the README. Then remove this line."
 
-      magikarp.alter_hp(0)
+#      magikarp.alter_hp(0)
+      Pokemon.alter_hp(0, @db, 129)
       expect(@db.execute("SELECT hp FROM pokemon WHERE id = 129").flatten.first).to eq(0)
     end
   end
