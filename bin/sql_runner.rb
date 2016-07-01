@@ -1,3 +1,5 @@
+require 'pry'
+
 class SQLRunner
   def initialize(db)
     @db = db
@@ -13,6 +15,10 @@ class SQLRunner
   end
 
   def execute_create_hp_column
-    @db.execute("ALTER TABLE pokemon ADD hp INTEGER NOT NULL DEFAULT(60);")
+    sql = File.read('db/create_hp.sql')
+    execute_sql(sql)
+#    @db.execute("ALTER TABLE pokemon ADD hp INTEGER NOT NULL DEFAULT(60);")
   end
+
+  # binding.pry
 end
