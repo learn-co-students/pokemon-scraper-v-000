@@ -38,11 +38,14 @@ describe "Pokemon" do
 
   describe "BONUS" do
     # The find method creates a new Pokemon after selecting their row from the database by their id number.
-    let(:pikachu){Pokemon.find(25, @db)}
-    let(:magikarp){Pokemon.find(129, @db)}
+
+    let(:pikachu){Pokemon.new(25, 'pikachu', 'fire', @db)}
+    let(:magikarp){Pokemon.new(129, 'magikarp', 'water', @db)}
 
     before do
       @sql_runner.execute_create_hp_column
+      @db.execute("INSERT INTO pokemon (id, name, type) VALUES (25, 'pikachu', 'fire')")
+      @db.execute("INSERT INTO pokemon (id, name, type) VALUES (129, 'magikarp', 'water')")
     end
 
     it "knows that a pokemon have a default hp of 60" do
