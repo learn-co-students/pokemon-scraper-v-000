@@ -42,6 +42,7 @@ describe "Pokemon" do
     let(:magikarp){Pokemon.find(129, @db)}
 
     before do
+      pikachu.save(pikachu.name, pikachu.type, @db)
       @sql_runner.execute_create_hp_column
     end
 
