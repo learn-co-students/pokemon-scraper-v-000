@@ -46,7 +46,6 @@ describe "Pokemon" do
     end
 
     it "knows that a pokemon have a default hp of 60" do
-      binding.pry
       #pending "Implement the bonus section of the README. Then remove this line."
       expect(@db.execute("SELECT hp FROM pokemon").flatten.first).to eq(60)
     end
