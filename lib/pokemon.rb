@@ -1,3 +1,5 @@
+require 'pry'
+
 class Pokemon
   attr_accessor :name, :id, :type, :db, :hp
 
@@ -16,6 +18,5 @@ class Pokemon
   def self.find(id, db)
     poke = db.execute("SELECT * FROM pokemon WHERE id=? LIMIT 1", id)
   end
-
 
 end
