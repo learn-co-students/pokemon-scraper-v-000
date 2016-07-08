@@ -62,7 +62,7 @@ describe "Pokemon" do
           magikarp.alter_hp(0)
           expect(@db.execute("SELECT hp FROM pokemon WHERE id = 129").flatten.first).to eq(0)
         end
-
+        #come back to this at the end of ORM
         # The pokemon battle has now been won, and you are the Pokemon and SQL Master!
     end
 =end
