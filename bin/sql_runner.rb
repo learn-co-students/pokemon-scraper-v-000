@@ -1,3 +1,4 @@
+
 class SQLRunner
   def initialize(db)
     @db = db
