@@ -16,7 +16,10 @@ class Pokemon
 
 
   def self.find(id, db)
-    poke = db.execute("SELECT * FROM pokemon WHERE id=? LIMIT 1", id)
+    db.execute("SELECT * FROM pokemon WHERE id=? LIMIT 1", id)
   end
 
+  def alter_hp
+
+  end
 end
