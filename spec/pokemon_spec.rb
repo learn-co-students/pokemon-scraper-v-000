@@ -24,7 +24,7 @@ describe "Pokemon" do
       Pokemon.save("Pikachu", "fire", @db)
 
       pikachu_from_db = @db.execute("SELECT * FROM pokemon WHERE name = 'Pikachu'")
-      expect(pikachu_from_db).to eq([[1, "Pikachu", "fire"]])
+      expect(pikachu_from_db).to eq([[1, "Pikachu", "fire", 60]])
     end
   end
 
@@ -33,7 +33,7 @@ describe "Pokemon" do
       Pokemon.save("Pikachu", "fire", @db)
 
       pikachu_from_db = Pokemon.find(1, @db)
-      expect(pikachu_from_db).to eq([[1, "Pikachu", "fire"]])
+      expect(pikachu_from_db).to eq([[1, "Pikachu", "fire", 60]])
     end
   end
 
