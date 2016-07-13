@@ -48,7 +48,7 @@ describe "Pokemon" do
 
     it "knows that a pokemon have a default hp of 60" do
       pending "Implement the bonus section of the README. Then remove this line."
-      expect(@db.execute("knows_default_hp").flatten.first).to eq(60)
+      expect(@db.execute("SELECT hp FROM pokemon;").flatten.first).to eq(60)
     end
 
     # So Ian and you have decided to battle.  He chose Magikarp (rookie mistake), and you chose Pikachu.
