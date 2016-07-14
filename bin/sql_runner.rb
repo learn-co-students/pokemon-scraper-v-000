@@ -12,4 +12,5 @@ class SQLRunner
      sql.scan(/[^;]*;/m).each { |line| @db.execute(line) } unless sql.empty?
   end
 
+
 end
