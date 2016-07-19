@@ -38,34 +38,32 @@ describe "Pokemon" do
   end
 
   describe "BONUS" do
-    # The find method creates a new Pokemon after selecting their row from the database by their id number.
-    let(:pikachu){Pokemon.find(25, @db)}
-    let(:magikarp){Pokemon.find(129, @db)}
-
     before do
       @sql_runner.execute_create_hp_column
+      Pokemon.save('Magikarp', 'water', @db)
+      Pokemon.save('Pikachu', 'fire', @db)
     end
 
     it "knows that a pokemon have a default hp of 60" do
       pending "Implement the bonus section of the README. Then remove this line."
-      expect(@db.execute("knows_default_hp").flatten.first).to eq(60)
+      expect(@db.execute("SELECT hp FROM pokemon WHERE id = 1").flatten.first).to eq(60)
     end
 
     # So Ian and you have decided to battle.  He chose Magikarp (rookie mistake), and you chose Pikachu.
     # He used splash. It wasn't very effective. It did one damage.
     it "alters Pikachu's hp to 59" do
       pending "Implement the bonus section of the README. Then remove this line."
-
-      pikachu.alter_hp(59)
-      expect(@db.execute("alter_hp").flatten.first).to eq(59)
+      Pokemon.alter_hp(1, 59, @db)
+      expect(Pokemon.find(1, @db).flatten.last).to eq(59)
     end
 
     # Now we alter Magikarp's hp
     it "alters Magikarp's hp" do
       pending "Implement the bonus section of the README. Then remove this line."
-
-      magikarp.alter_hp(0)
-      expect(@db.execute("alter_hp").flatten.first).to eq(0)
+      Pokemon.alter_hp(1, 0, @db)
+      expect(Pokemon.find(1, @db).flatten.last).to eq(0)
     end
+
+    # The pokemon battle has now been won, and you are the Pokemon and SQL Master!
   end
 end
