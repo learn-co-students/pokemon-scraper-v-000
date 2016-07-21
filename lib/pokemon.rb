@@ -3,13 +3,19 @@ class Pokemon
   @@all = []
 
   def initialize(id, name, type, database_connection)
-    @id = id
-    @name = name
-    @type = type
-    @db = database_connection
+    def id
+      @id = id
+    end
+    def name
+      @name = name
+    end
+    def type
+      @type = type
+    end
+    def db
+      @db = database_connection
+    end
     @@all << self
-#    database_connection.execute("DROP TABLE IF EXISTS pokemon")
-#    database_connection.execute("CREATE TABLE IF NOT EXISTS pokemon(id INTEGER PRIMARY KEY, name TEXT, type TEXT)")
   end
 
   def self.all
@@ -22,6 +28,10 @@ class Pokemon
 
   def self.find(id, database_connection)
     database_connection.execute("SELECT * FROM pokemon WHERE id = 1;")
+  end
+
+  def self.alter_hp(id, new_hp, database_connection)
+    database_connection.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, id)
   end
 
 end

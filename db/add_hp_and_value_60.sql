@@ -1,0 +1,1 @@
+ALTER TABLE pokemon ADD COLUMN hp integer NOT NULL DEFAULT(60);
