@@ -19,8 +19,8 @@ class Pokemon
     db.execute("SELECT * FROM pokemon WHERE id = #{id}")
   end
 
-  def alter_hp hp
-    self.db.execute("UPDATE pokemon SET hp = #{hp} WHERE id = #{self.id} ")
+  def self.alter_hp id, hp, db
+    db.execute("UPDATE pokemon SET hp = #{hp} WHERE id = #{id}")
   end
 
 end
