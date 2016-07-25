@@ -3,6 +3,7 @@ class Pokemon
 
   def initialize(id, name, type, db)
     @name = name
+    @id = id
   end
 
   def self.save(name, type, db)
@@ -10,10 +11,10 @@ class Pokemon
   end
 
   def self.find(id, db)
-    db.execute("SELECT * FROM pokemon")
+    db.execute("SELECT * FROM pokemon WHERE id = ?", id)
   end
 
-  # def alter_hp(new_hp)
-    # db.execute("UPDATE pokemon SET hp = new_hp")
-  # end
+  def self.alter_hp(hp, id, db)
+    db.execute("UPDATE pokemon SET hp = ? WHERE ID = ?", hp, id)
+  end
 end
