@@ -1,10 +1,9 @@
 class Pokemon
 
-	attr_accessor :id, :name, :type, :db
-	@@all = []
+	attr_accessor :id, :name, :type, :db, :hp
 
 	def initialize(id, name, type, db)
-		@@all << self
+		@db = db
 	end
 
 	def self.all
@@ -16,12 +15,13 @@ class Pokemon
 	end
 
 	def self.find(id, db)
-		db.execute("SELECT id, name, type FROM pokemon WHERE id = #{id}")
+		db.execute("SELECT * FROM pokemon WHERE id = #{id}")
+		# Pokemon.new(info, db)
 	end
 
-	# def execute_create_hp_column
-	# 	self.execute("ALTER TABLE pokemon ADD COLUMN hp INTEGER")
-	# end
+	def alter_hp(new_hp)
+		db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, id)
+	end
 
 
 end
