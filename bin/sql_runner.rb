@@ -1,4 +1,7 @@
 class SQLRunner
+  
+  attr_accessor :db
+
   def initialize(db)
     @db = db
   end
@@ -10,5 +13,10 @@ class SQLRunner
 
   def execute_sql(sql)
      sql.scan(/[^;]*;/m).each { |line| @db.execute(line) } unless sql.empty?
+  end
+
+  def execute_create_hp_column
+    sql = File.read('db/alter_table_migration.sql')
+    execute_sql(sql)
   end
 end
