@@ -1,23 +1,22 @@
+require 'pry'
+
 class Pokemon
 
-	attr_accessor :id, :name, :type, :db, :hp
+	attr_accessor :id, :name, :type, :hp, :db
 
-	def initialize(id, name = nil, type = nil, hp = 60, db)
-		@db = db
-	end
-
-	def self.all
-		@@all
-	end
+	def initialize(attr_array, db)
+    	@id, @name, @type, @hp = *attr_array
+    	@db = db
+  	end
 
 	def self.save(name, type, db)
 		db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type)
 	end
 
 	def self.find(id, db)
-		info = db.execute("SELECT * FROM pokemon WHERE id = ?", id)
+		info = db.execute("SELECT * FROM pokemon WHERE id = ?", id).first
+		binding.pry
 		Pokemon.new(info, db)
-		info
 	end
 
 	def alter_hp(new_hp)
