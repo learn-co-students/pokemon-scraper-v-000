@@ -11,4 +11,9 @@ class SQLRunner
   def execute_sql(sql)
      sql.scan(/[^;]*;/m).each { |line| @db.execute(line) } unless sql.empty?
   end
+
+  def execute_create_hp_column
+
+  end
+
 end
