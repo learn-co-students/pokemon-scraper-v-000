@@ -1,9 +1,11 @@
 class Pokemon
 
-  attr_accessor :id, :name, :type, :db 
+  attr_accessor :id, :name, :type, :hp, :db 
 
   def initialize(id, name, type, db)
-    @id, @name, @type, @db = id, name, type, db
+     @id, @name, @type, @hp = id, name, type, hp
+     @db = db 
+
   end
 
   def self.save(name, type, db)
@@ -14,19 +16,8 @@ class Pokemon
     db.execute("SELECT id, name, type FROM pokemon")
   end
 
+  def alter_hp(new_hp)
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, id)
+  end
+
 end
-
-
-
-
-# Pokemon
-#   .initialize
-#     is initialized with a name, type and db (FAILED - 1)
-#   .save
-#     saves an instance of a pokemon with the correct id (FAILED - 2)
-#   .find
-#     finds a pokemon from the database (FAILED - 3)
-#   BONUS
-#     knows that a pokemon have a default hp of 60 (FAILED - 4)
-#     alters Pikachu's hp to 59 (FAILED - 5)
-#     alters Magikarp's hp (FAILED - 6)

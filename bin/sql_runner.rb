@@ -13,7 +13,8 @@ class SQLRunner
   end
 
   def execute_create_hp_column
-
+    sql = File.read('db/execute_create_hp_column.sql')
+    execute_sql(sql)
   end
 
 end
