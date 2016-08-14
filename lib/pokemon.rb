@@ -18,13 +18,8 @@ class Pokemon
     db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)",name, type)
   end
 
-  def self.find(id, name)
-    array = []
-    self.all.detect do |pokemon|
-       id == pokemon.id || name == pokemon.name
-        array << [pokemon.id, pokemon.name, pokemon.type]
-    end
-    array
+  def self.find(id, db)
+    db.execute("SELECT * FROM pokemon WHERE id == ?",id)
   end
 
   def self.alter_hp(id, new_health, db)
