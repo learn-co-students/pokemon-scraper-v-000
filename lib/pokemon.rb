@@ -2,12 +2,11 @@ class Pokemon
   attr_accessor :id, :name, :type, :db, :hp
   @@all = []
 
-  def initialize(id, name, type, db, hp = nil)
+  def initialize(id, name, type, db)
     @id = id
     @name = name
     @type = type
     @db = db
-    @hp = nil
     @@all << self
   end
 
@@ -30,7 +29,6 @@ class Pokemon
 
   def self.alter_hp(id, new_health, db)
     db.execute('UPDATE pokemon SET hp = ? WHERE id = ?', new_health, id)
-    # binding.pry
   end
 
 end
