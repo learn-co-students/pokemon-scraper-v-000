@@ -7,7 +7,7 @@ class Pokemon
     @name = name
     @type = type
     @db = db
-    @hp = hp
+    @hp = nil
     @@all << self
   end
 
@@ -20,13 +20,12 @@ class Pokemon
   end
 
   def self.find(id, name)
-    db.execute('SELECT * FROM pokemon WHERE id == id ?', id)
-    # array = []
-    # self.all.detect do |pokemon|
-    #    id == pokemon.id || name == pokemon.name
-    #     array << [pokemon.id, pokemon.name, pokemon.type]
-    # end
-    # array
+    array = []
+    self.all.detect do |pokemon|
+       id == pokemon.id || name == pokemon.name
+        array << [pokemon.id, pokemon.name, pokemon.type]
+    end
+    array
   end
 
   def self.alter_hp(id, new_health, db)
