@@ -1,3 +1,4 @@
+require 'pry'
 class SQLRunner
   def initialize(db)
     @db = db
@@ -11,4 +12,13 @@ class SQLRunner
   def execute_sql(sql)
      sql.scan(/[^;]*;/m).each { |line| @db.execute(line) } unless sql.empty?
   end
+
+
+  def execute_create_hp_column
+    create_hp = File.read('db/migration.sql')
+    execute_sql(create_hp)
+  end
+  
+  
+ 
 end
