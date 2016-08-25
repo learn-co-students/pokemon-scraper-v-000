@@ -48,7 +48,7 @@ describe "Pokemon" do
 
     it "knows that a pokemon have a default hp of 60" do
       expect(@db.execute("knows_default_hp").flatten.first).to eq(60)
-    end
+     end
 
     # So Ian and you have decided to battle.  He chose Magikarp (rookie mistake), and you chose Pikachu.
     # He used splash. It wasn't very effective. It did one damage.
