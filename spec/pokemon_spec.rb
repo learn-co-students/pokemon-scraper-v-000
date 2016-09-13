@@ -47,25 +47,26 @@ describe "Pokemon" do
     end
 
     it "knows that a pokemon have a default hp of 60" do
-      pending "Implement the bonus section of the README. Then remove this line."
-      expect(@db.execute("knows_default_hp").flatten.first).to eq(60)
+#      pending "Implement the bonus section of the README. Then remove this line."
+      Pokemon.save("Pikachu", "fire", @db)
+      expect(@db.execute("SELECT hp FROM pokemon;").flatten.first).to eq(60)
     end
 
     # So Ian and you have decided to battle.  He chose Magikarp (rookie mistake), and you chose Pikachu.
     # He used splash. It wasn't very effective. It did one damage.
     it "alters Pikachu's hp to 59" do
-      pending "Implement the bonus section of the README. Then remove this line."
-
+#      pending "Implement the bonus section of the README. Then remove this line."
+      pikachu = Pokemon.new(1, "Pikachu", "fire", @db)
       pikachu.alter_hp(59)
-      expect(@db.execute("alter_hp").flatten.first).to eq(59)
+      expect(@db.execute("SELECT hp FROM pokemon WHERE id = 1;").flatten.first).to eq(59)
     end
 
     # Now we alter Magikarp's hp
     it "alters Magikarp's hp" do
-      pending "Implement the bonus section of the README. Then remove this line."
-
+#      pending "Implement the bonus section of the README. Then remove this line."
+      magikarp = Pokemon.new(1, "Magikarp", "karp", @db)
       magikarp.alter_hp(0)
-      expect(@db.execute("alter_hp").flatten.first).to eq(0)
+      expect(@db.execute("SELECT hp FROM pokemon WHERE id = 1;").flatten.first).to eq(0)
     end
   end
 end
