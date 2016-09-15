@@ -13,9 +13,9 @@ class SQLRunner
   end
 
   def execute_create_hp_column
-    @db.execute("ALTER TABLE pokemon ADD COLUMN hp INTEGER DEFAULT(60)")
+    sql = File.read('db/add_hp_migration.sql')
+    execute_sql(sql)
   end
-
-  def alter_hp
-  end
+  
+  
 end
