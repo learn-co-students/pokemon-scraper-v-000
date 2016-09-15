@@ -47,7 +47,7 @@ describe "Pokemon" do
     end
 
     it "knows that a pokemon have a default hp of 60" do
-      pending "Implement the bonus section of the README. Then remove this line."
+           pending "Implement the bonus section of the README. Then remove this line."
       expect(@db.execute("knows_default_hp").flatten.first).to eq(60)
     end
 
@@ -58,6 +58,7 @@ describe "Pokemon" do
 
       pikachu.alter_hp(59)
       expect(@db.execute("alter_hp").flatten.first).to eq(59)
+
     end
 
     # Now we alter Magikarp's hp

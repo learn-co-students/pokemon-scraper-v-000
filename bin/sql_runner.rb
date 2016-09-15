@@ -11,4 +11,11 @@ class SQLRunner
   def execute_sql(sql)
      sql.scan(/[^;]*;/m).each { |line| @db.execute(line) } unless sql.empty?
   end
+
+  def execute_create_hp_column
+    @db.execute("ALTER TABLE pokemon ADD COLUMN hp INTEGER DEFAULT(60)")
+  end
+
+  def alter_hp
+  end
 end
