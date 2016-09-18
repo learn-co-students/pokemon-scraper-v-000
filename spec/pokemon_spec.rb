@@ -33,7 +33,7 @@ describe "Pokemon" do
       newer_pokemon = Pokemon.save("Pikachu", "fire", @db)
 
       pikachu_from_db = Pokemon.find(1, @db)
-      expect(pikachu_from_db).to eq([[1, "Pikachu", "fire"]])
+      expect(pikachu_from_db).to eq([1, "Pikachu", "fire"])
     end
   end
 
