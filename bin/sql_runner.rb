@@ -9,7 +9,7 @@ class SQLRunner
   end
 
   def execute_create_hp_column
-    sql = File.read('db/pokemon.sql')
+    sql = File.read('db/alter_table.sql')
     execute_sql(sql)
   end
 
