@@ -21,6 +21,5 @@ class Pokemon
     pokemon_hash[:type]=pokemon[0][2]
     pokemon_hash[:db]=database_connection
     Pokemon.new(pokemon_hash)
-    binding.pry
   end
 end
