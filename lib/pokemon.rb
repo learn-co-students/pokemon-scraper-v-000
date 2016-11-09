@@ -21,8 +21,12 @@ class Pokemon
   end
 
   def self.find(id, db)
-    hash = {id: id, name: db.execute("SELECT name FROM pokemon WHERE id = ?", id).flatten.first, type: db.execute("SELECT type FROM pokemon WHERE id = ?", id).flatten.first, db: db}
-    self.new(hash)
+    attributes = db.execute("SELECT * FROM pokemon WHERE id = ?", id).flatten
+    new_id = attributes[0]
+    name = attributes[1]
+    type = attributes[2]
+    hp = attributes[3]
+    Pokemon.new(id: new_id, name: name, type: type, hp: hp, db: db)
   end
 
   def alter_hp(hp, db)
