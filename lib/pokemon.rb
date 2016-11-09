@@ -4,11 +4,12 @@ class Pokemon
 
   @@all = []
 
-  def initialize(hash)
-    hash.each do |key, value|
-      self.send("#{key}=", value)
-    end
-    @@all << self
+  def initialize(id: id, name: name, type: type, hp: nil, db: db)
+    @name = name
+    @type = type
+    @db = db
+    @id = id
+    @hp = hp
   end
 
   def self.all
@@ -20,11 +21,12 @@ class Pokemon
   end
 
   def self.find(id, db)
-    @@all.find {|pokemon| pokemon.id == id}
+    hash = {id: id, name: db.execute("SELECT name FROM pokemon WHERE id = ?", id).flatten.first, type: db.execute("SELECT type FROM pokemon WHERE id = ?", id).flatten.first, db: db}
+    self.new(hash)
   end
 
   def alter_hp(hp, db)
-    self.hp = hp
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", hp, self.id)
   end
 
 end
