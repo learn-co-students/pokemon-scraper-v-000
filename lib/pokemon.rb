@@ -1,5 +1,6 @@
+require 'pry'
 class Pokemon
-  attr_accessor :name, :type, :db, :id
+  attr_accessor :name, :type, :db, :id, :hp
 
   @@all = []
 
@@ -20,6 +21,10 @@ class Pokemon
 
   def self.find(id, db)
     @@all.find {|pokemon| pokemon.id == id}
+  end
+
+  def alter_hp(hp, db)
+    self.hp = hp
   end
 
 end
