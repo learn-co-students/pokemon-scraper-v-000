@@ -22,12 +22,11 @@ class Pokemon
     pokemon_hash[:type]=pokemon[0][2]
     pokemon_hash[:hp]=pokemon[0][3]
     pokemon_hash[:db]=database_connection
-    binding.pry
     Pokemon.new(pokemon_hash)
   end
 
   def alter_hp(hp,database_connection)
-  database_connection.execute("update table pokemon set hp = ? where id = ?", hp, self.id)
+  database_connection.execute("update pokemon set hp = ? where id = ?", hp, self.id)
   end
 
 end
