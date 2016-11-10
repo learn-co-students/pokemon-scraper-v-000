@@ -22,6 +22,7 @@ class Pokemon
     pokemon_hash[:type]=pokemon[0][2]
     pokemon_hash[:hp]=pokemon[0][3]
     pokemon_hash[:db]=database_connection
+    binding.pry
     Pokemon.new(pokemon_hash)
   end
 
