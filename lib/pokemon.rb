@@ -16,13 +16,11 @@ class Pokemon
   end
 
   def self.find(id, db)
-    new_object = db.execute("SELECT name, type, hp FROM pokemon WHERE id = ?", id)
-    new_object.collect do |object|
-      @name = object[0]
-      @type = object[1]
-      @hp = object[2]
-    end
-    Pokemon.new(id: id, name: @name, type: @type, db: db, hp: @hp)
+    new_object = db.execute("SELECT * FROM pokemon WHERE id = ?", id)
+    name = new_object[0][1]
+    type = new_object[0][2]
+    hp = new_object[0][3]
+    Pokemon.new(id: id, name: name, type: type, db: db, hp: hp)
   end
 
   def alter_hp(hp, db)
