@@ -19,6 +19,6 @@ class Pokemon
       pokemon_row = db.execute("SELECT id
         FROM pokemon
         WHERE id = ?").flatten
-        Pokemon.new(id: pokemon_row[0], name: pokemon_row[1], type: pokemon_row[2], hp: pokemon_row[3], db: db)
+        Pokemon.new(id: pokemon_row[0], name: pokemon_row[1], type: pokemon_row[2], db: db)
     end
 end
