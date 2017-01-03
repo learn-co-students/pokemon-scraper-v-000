@@ -2,19 +2,12 @@ class Pokemon
 
   attr_accessor :id, :name, :type, :db, :hp
 
-  @@all = []
-
   def initialize(id:, name:, type:, db:, hp:60)
     @id = id
     @name = name
     @type = type
     @db = db
     @hp = hp
-    @@all << self
-  end
-
-  def self.all
-    @@all
   end
 
   def self.save(name, type, db)
@@ -33,6 +26,6 @@ class Pokemon
   end
 
   def alter_hp(hp, db)
-    db.execute("UPDATE pokemon SET hp = )
+    db.execute("UPDATE pokemon SET hp = ")
   end
 end
