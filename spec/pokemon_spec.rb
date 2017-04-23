@@ -9,7 +9,6 @@ describe "Pokemon" do
   end
 
   let(:pokemon) {Pokemon.new(id: 1, name: "Pikachu", type: "electric", db: @db)}
-
   describe ".initialize" do
     it 'is initialized with keyword arguments of name, type and db' do
       expect(pokemon).to respond_to(:id)
@@ -32,7 +31,6 @@ describe "Pokemon" do
     it 'finds a pokemon from the database by their id number and returns a new Pokemon object' do
       # The find method creates a new Pokemon after selecting their row from the database by their id number.
       Pokemon.save("Pikachu", "electric", @db)
-
       pikachu_from_db = Pokemon.find(1, @db)
       expect(pikachu_from_db.id).to eq(1)
       expect(pikachu_from_db.name).to eq("Pikachu")
@@ -50,7 +48,6 @@ describe "Pokemon" do
 
     let(:pikachu){Pokemon.find(1, @db)}
     let(:magikarp){Pokemon.find(2, @db)}
-
     # remove the 'x' before 'it' to run these tests
     xit "knows that a pokemon have a default hp of 60" do
       # The find method should create a new Pokemon object with an id, type, name AND hp after selecting their row from the database by their id number.
