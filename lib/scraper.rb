@@ -29,3 +29,7 @@ class Scraper
   end
 
 end
+
+#sc = Scraper.new(@db)
+
+#binding.pry

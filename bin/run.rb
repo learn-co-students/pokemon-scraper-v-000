@@ -4,4 +4,5 @@ Scraper.new(@db).scrape
 
 all_pokemon = @db.execute("SELECT * FROM pokemon;")
 
-# test out your code here!
+pikachu = Pokemon.find(1, @db)
+binding.pry
