@@ -27,9 +27,4 @@ class Scraper
       Pokemon.save(pk_name, pk_type, db)
     end
   end
-
 end
-
-#sc = Scraper.new(@db)
-
-#binding.pry
