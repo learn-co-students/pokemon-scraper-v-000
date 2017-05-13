@@ -10,18 +10,18 @@ class Pokemon
   end
 
   def self.find(id, db)
-    array = db.execute("SELECT name, type FROM pokemon WHERE id = ?;", id).flatten
+    array = db.execute("SELECT name, type, hp FROM pokemon WHERE id = ?;", id).flatten
       Pokemon.new(id).tap do |pokemon|
       pokemon.name = array[0]
       pokemon.type = array[1]
-
+      pokemon.hp = array[2]
       end
 
       # binding.pry
   end
 
   def alter_hp(hp, db)
-    
+
     what = db.execute("UPDATE pokemon SET hp = ? WHERE id = ?;", hp, self.id)
   end
 # binding.pry
