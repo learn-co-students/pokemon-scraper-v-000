@@ -21,9 +21,6 @@ class Pokemon
   end
 
   def self.find(key_id, db)
-		#access database
-		#find by unique id
-		#return object
 		 new_pokemon_object = db.execute("SELECT * FROM pokemon WHERE pokemon.id = (?)", [key_id]).flatten
 		 Pokemon.new(id:new_pokemon_object[0], name:new_pokemon_object[1], type:new_pokemon_object[2], hp:new_pokemon_object[3], db: db)
   end
@@ -31,4 +28,5 @@ class Pokemon
   def alter_hp(hp, db)
 		db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", hp, id)
 	end
+
 end
