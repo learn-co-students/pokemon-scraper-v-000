@@ -2,7 +2,7 @@ class Pokemon
 
 #----------------------------------------------------------------------------------------
 #macros, vars, attrs
-attr_accessor :id, :name, :type, :db, :hp
+attr_accessor :id, :name, :type, :db, :hp, :db_id
 
 
 #----------------------------------------------------------------------------------------
@@ -16,6 +16,8 @@ end
 
 
 def alter_hp (hp, db)
+# db.execute ("UPDATE pokemon SET hp = ? WHERE name = ?;", hp, self.name)
+db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", hp, self.db_id)
 
 
 end
@@ -72,6 +74,9 @@ result.each_hash {|this_hash|
 poke_array[0]
 
 end
+
+
+
 
 
 #end of class
