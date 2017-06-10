@@ -2,9 +2,12 @@ require 'pry'
 class Scraper
   attr_accessor :file, :parsed_file, :all_pokemon, :db
 
-  def initialize(id:, name:, type:, hp:, db:)
-    @id, @name, @type, @hp, @db = id, name, type, hp, db
-    binding.pry
+  def initialize(id,name,type,hp=60,db)
+    @id = id
+    @name = name
+    @type = type
+    @hp = hp
+    @db = db
   end
 
   def catch_em_all
