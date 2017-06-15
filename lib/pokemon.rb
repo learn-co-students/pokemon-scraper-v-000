@@ -14,6 +14,7 @@ class Pokemon
     def self.find(id, db)
         p_from_db = Pokemon.new(id)
         poke_array = db.execute("SELECT * FROM pokemon WHERE name = 'Pikachu';")
+    binding.pry
         p_from_db.name = "Pikachu"#poke_array[1]
         p_from_db.type = "electric"#poke_array[2]
         p_from_db
