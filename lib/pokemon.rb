@@ -1,7 +1,7 @@
 require 'pry'
 
 class Pokemon
-       attr_accessor :id, :name, :type, :db
+       attr_accessor :id, :name, :type, :db, :hp
 
   @@all = []
 
@@ -9,6 +9,7 @@ class Pokemon
      @id = pokemon[:id]
      @name = pokemon[:name]
      @type = pokemon[:type]
+     @hp = pokemon[:hp]
      @db = pokemon[:db]
       @@all << self
       pokemon
@@ -25,11 +26,17 @@ class Pokemon
   def self.find(id, db)
     name = db.execute("SELECT name FROM pokemon WHERE id = #{id}").flatten[0]
     type = db.execute("SELECT type FROM pokemon WHERE id = #{id}").flatten[0]
-    pokemonhash = {id: id, name: name, type: type, db: db}
+    hp = db.execute("SELECT hp FROM pokemon WHERE id = #{id}").flatten[0]
+
+    pokemonhash = {id: id, name: name, type: type, hp: hp, db: db}
 
     newPokemon = Pokemon.new(pokemonhash)
-
-
-
   end
+
+  def alter_hp(new_hp, db)
+    db.execute("UPDATE pokemon SET hp = #{new_hp}
+                WHERE id = #{self.id}")
+  end
+
+
 end
