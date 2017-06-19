@@ -1,5 +1,4 @@
 require_relative "spec_helper"
-
 describe "Pokemon" do
   before do
     @db = SQLite3::Database.new(':memory:')
