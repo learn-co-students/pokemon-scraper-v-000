@@ -1,13 +1,11 @@
-require 'pry'
 class Scraper
   attr_accessor :file, :parsed_file, :all_pokemon, :db
 
-  def initialize(id,name,type,hp=60,db)
-    @id = id
-    @name = name
-    @type = type
-    @hp = hp
-    @db = db
+  def initialize(db)
+    self.db = db
+    self.file = File.open("pokemon_index.html")
+    self.parsed_file = Nokogiri::HTML.parse(file)
+    self.all_pokemon = catch_em_all
   end
 
   def catch_em_all
