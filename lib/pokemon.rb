@@ -1,5 +1,5 @@
 class Pokemon
-	attr_accessor :id, :name, :type, :db, :hp
+	attr_accessor :id, :name, :type, :db
 
 	@@all = []
 
@@ -8,7 +8,6 @@ class Pokemon
 		@name = name
 		@type = type
 		@db = db
-		@hp = 60
 		self.class.save(name, type, db)
 	end
 
