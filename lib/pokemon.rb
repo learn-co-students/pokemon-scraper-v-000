@@ -3,7 +3,7 @@ class Pokemon
 
   @@all = []
 
-  def initialize(name:, type:, db:, id:, hp: 60)
+  def initialize(name:, type:, db:, id:, hp: nil)
     @name = name
     @type = type
     @db = db
@@ -21,9 +21,9 @@ class Pokemon
     Pokemon.new(id: pokemon[0], name: pokemon[1], type: pokemon[2], hp: pokemon[3], db: db)
   end
 
-  def alter_hp
-    "UPDATE pokemon SET hp = 59 WHERE name = 'Pikachu';"
-    "UPDATE pokemon SET hp = 59 WHERE name = 'magikarp';"
+  def alter_hp(hp, db)
+    db.execute("UPDATE pokemon SET hp = 59 WHERE name = 'Pikachu';")
+    db.execute("UPDATE pokemon SET hp = 0 WHERE name = 'Magikarp';")
   end
 
 end
