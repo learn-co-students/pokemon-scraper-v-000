@@ -3,7 +3,7 @@ class Pokemon
 
   @@all = []
 
-  def initialize(name:, type:, db:, id:, hp: nil)
+  def initialize(name:, type:, db:, id:, hp: 60)
     @name = name
     @type = type
     @db = db
@@ -13,7 +13,7 @@ class Pokemon
   end
 
   def self.save(name, type, db)
-    db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)",name, type)
+    db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type)
   end
 
   def self.find(id, db)
@@ -22,7 +22,8 @@ class Pokemon
   end
 
   def alter_hp
-
+    "UPDATE pokemon SET hp = 59 WHERE name = 'Pikachu';"
+    "UPDATE pokemon SET hp = 59 WHERE name = 'magikarp';"
   end
 
 end
