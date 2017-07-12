@@ -1,7 +1,7 @@
 require 'pry'
 class Pokemon
 
-  attr_accessor :name, :type, :db, :id
+  attr_accessor :name, :type, :db, :id, :hp
 
   @@all = []
 
@@ -10,6 +10,7 @@ class Pokemon
     @name = args[:name]
     @type = args[:type]
     @db = args[:db]
+    @hp = args[:hp]
     #binding.pry
     #db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type)
   end
@@ -27,8 +28,16 @@ class Pokemon
     id = e[0][0]
     name = e[0][1]
     type = e[0][2]
-    args =  {:id => id, :name => name, :type => type}
+    hp = e[0][3]
+    args =  {:id => id, :name => name, :type => type, :hp => hp}
     Pokemon.new(args)
     #binding.pry
   end
+
+  def alter_hp(hp, db)
+    victim = self.name
+    @hp = hp
+    db.execute("UPDATE pokemon SET hp = ? WHERE name = ?", @hp, victim)
+  end
+
 end
