@@ -22,7 +22,10 @@ class Pokemon
     name = db.execute("SELECT name FROM pokemon WHERE id = (?)", id).first.first
     type = db.execute("SELECT type FROM pokemon WHERE id = (?)", id).first.first
     self.new({name: name, type: type, db: db, id: id})
-    # self.new = @@all.match(id)
+  end
+
+  def alter_hp(hp, db)
+    db.execute('UPDATE pokemon SET hp = ? WHERE id=?', hp, id) 
   end
 
 end
