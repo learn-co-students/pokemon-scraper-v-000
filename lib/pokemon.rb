@@ -24,5 +24,4 @@ class Pokemon
     @hp = new_hp
     db.execute("UPDATE pokemon SET hp = #{@hp} WHERE id = #{@id}")
   end
-
 end
