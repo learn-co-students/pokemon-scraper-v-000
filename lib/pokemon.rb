@@ -5,7 +5,7 @@ class Pokemon
   def initialize(data, hp = nil)
     @hp = hp
     data.each{|key,value| self.send("#{key}=", value)}
-	  @@all << self if !@@all.detect {|pokemon| crypto.name == self.name}
+	  @@all << self if !@@all.detect {|pokemon| pokemon.name == self.name}
   end
 
   def self.save(name, type, db)
