@@ -1,5 +1,5 @@
 class Pokemon
-  attr_accessor :id, :name, :type, :db
+  attr_accessor :id, :name, :type, :db, :health
 
   def initialize(id: id, name: name, type: type, db: db)
     @id = id
@@ -16,5 +16,9 @@ class Pokemon
     test = db.execute("SELECT id, name, type FROM pokemon WHERE id = ?", id)
     pokemon = Pokemon.new(id: test[0][0], name: test[0][1], type: test[0][2])
   end
+
+  #def alter_hp(health, db )
+  #  db.execute("INSERT INTO pokemon (health) VALUES (?)", health)
+  #end
 
 end
