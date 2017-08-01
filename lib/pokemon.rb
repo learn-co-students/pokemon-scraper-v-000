@@ -17,7 +17,7 @@ class Pokemon
 
   def self.find(id, db)
       pokemon = {}
-      pokemon_values = db.execute("SELECT * FROM pokemon WHERE pokemon.id = ?", id ).flatten
+      pokemon_values = db.execute("SELECT * FROM pokemon WHERE pokemon.id = ?", id).flatten
       pokemon[:id] = id
       pokemon[:name] = pokemon_values[1]
       pokemon[:type] = pokemon_values[2]
@@ -27,6 +27,6 @@ class Pokemon
 
   def alter_hp(hp_new, db)
     db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", hp_new, self.id)
-    self.hp = db.execute("SELECT hp FROM pokemon WHERE pokemon.id = id")[0][0]
+    self.hp = db.execute("SELECT hp FROM pokemon WHERE pokemon.id = id").flatten
   end
 end
