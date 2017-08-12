@@ -16,4 +16,8 @@ class Pokemon
     Pokemon.new(id: pokemon_info[0], name: pokemon_info[1], type: pokemon_info[2], hp: pokemon_info[3], db: db)
   end # find
 
+  def alter_hp(hp, db)
+    db.execute("update pokemon set hp = ?", hp )
+  end # alter_hp
+
 end # Pokemon
