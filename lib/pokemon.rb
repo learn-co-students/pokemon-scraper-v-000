@@ -1,7 +1,5 @@
 require 'pry'
 
-require_relative '../bin/sql_runner.rb'
-
 class Pokemon
 
   @@all = []
@@ -27,7 +25,6 @@ class Pokemon
   end
 
   def alter_hp(number, db)
-  #  SQLRunner.new(db).execute_create_hp_column
     db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", number, self.id)
   end
 
