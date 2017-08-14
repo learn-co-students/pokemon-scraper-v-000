@@ -3,7 +3,7 @@ class Pokemon
 attr_accessor :id, :name, :type, :db, :hp
 
   def self.save (name, type, db)
-    db.execute("INSERT INTO pokemon (name, type)
+    db.execute("INSERT INTO Pokemon (name, type)
     VALUES (?, ? )", name, type)
   end
 
@@ -12,10 +12,12 @@ attr_accessor :id, :name, :type, :db, :hp
   pokemon_array = db.execute("SELECT * FROM Pokemon WHERE id=?",id).flatten!
 
       #creates an instance by creating a hash and creating an instance
-   new_pokemon = self.new({id:pokemon_array[0], name:pokemon_array[1],
+   new_pokemon = self.new({
+   id:pokemon_array[0],
+   name:pokemon_array[1],
    type:pokemon_array[2],
-   db:db,
-   hp:hp,})
+   hp:pokemon_array[3],
+   db:db })
   end
 
   def initialize(hash)
@@ -27,7 +29,7 @@ attr_accessor :id, :name, :type, :db, :hp
   end
 
   def alter_hp(hp,db)
-    binding.pry
+    db.execute("UPDATE Pokemon SET hp= ? WHERE id= ?",hp, self.id)
   end
 
 
