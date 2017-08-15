@@ -22,6 +22,6 @@ class Pokemon
   def self.find(id, db)
     result = db.execute("SELECT * FROM pokemon WHERE id = (?)", id)
     binding.pry
-    self.all.detect {|pk| pk.name = result[1]}
+    self.all.detect {|pk| pk.name == result[1]}
   end
 end
