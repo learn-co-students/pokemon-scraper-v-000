@@ -23,7 +23,7 @@ class Pokemon
     new_pokemon
   end
 
-  def self.alter_hp(hp)
-    @hp = hp
+  def alter_hp(new_hp, db)
+    self.hp = new_hp
   end
 end
