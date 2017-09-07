@@ -6,6 +6,7 @@ class Pokemon
 
   def initialize(id)
     @id = id
+    self.hp = 60
     @@all << self
   end
 
