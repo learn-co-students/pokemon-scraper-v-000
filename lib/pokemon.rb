@@ -14,6 +14,7 @@ class Pokemon
 
   def self.find(id, db)
     new_pokemon = db.execute("SELECT name, type FROM pokemon WHERE id = (?)")
-    self.new(:name= new_pokemon[0], :type= new_pokemon[1])
+    new_pokemon.each do | pokemon_attribute |
+      self.new
   end
 end
