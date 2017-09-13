@@ -1,3 +1,8 @@
+# We have set up your scraper class for you, which you can see in
+# `lib/scraper.rb`. We have also created a `schema_migration.sql` file that will
+# run the `SQL` statement to set up your database in `db/pokemon.db`. Your only
+# job is to build out the methods to save and find pokemon in the database.
+
 class Scraper
   attr_accessor :file, :parsed_file, :all_pokemon, :db
 
