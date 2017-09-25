@@ -19,7 +19,6 @@ class Pokemon
     pokemon_id = found_pokemon[0]
     pokemon_name = found_pokemon[1]
     pokemon_type = found_pokemon[2]
-
     new_pokemon = Pokemon.new(pokemon_name, pokemon_type, pokemon_id, db)
   end
 
