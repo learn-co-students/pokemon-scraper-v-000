@@ -1,0 +1,5 @@
+CREATE TABLE pokemon (
+  id INTEGER PRIMARY KEY,
+  pk_name TEXT,
+  pk_type TEXT
+);
