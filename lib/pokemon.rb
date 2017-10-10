@@ -27,5 +27,9 @@ class Pokemon
     pokemon
   end
 
+  def BONUS
+  "ALTER TABLE pokemon ADD hp INTEGER;"
+  end
+
 
 end
