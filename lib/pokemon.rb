@@ -1,3 +1,4 @@
+require 'pry'
 class Pokemon
 
   attr_accessor :id, :name, :type, :db, :hp
@@ -23,13 +24,14 @@ class Pokemon
   # end
 
   def self.find(id, database)
-    name = database.execute("SELECT pokemon.name FROM pokemon WHERE pokemon.id = ?", [id]).join
-    type = database.execute("SELECT pokemon.type FROM pokemon WHERE pokemon.id = ?", [id]).join
-    self.new(id: id, name: name, type: type, hp: hp, db: database)
+    array = database.execute("SELECT * FROM pokemon WHERE pokemon.id = ?", id)
+    # hp = database.execute("SELECT pokemon.hp FROM pokemon WHERE pokemon.id = ?", [id]).join
+    # binding.pry
+    self.new(id: id, name: array[0][1], type: array[0][2], hp: array[0][3], db: database)
   end
 
   def alter_hp(hp, database)
-    database.execute("UPDATE pokemon SET hp = hp WHERE name = ?", [self.name])
+    database.execute("UPDATE pokemon SET hp = ? WHERE id = ?", [hp, self.id])
   end
 end
 
