@@ -9,6 +9,11 @@ class Pokemon
     @db = db
   end
 
+  def alter_hp(health, db)
+
+    db.execute("UPDATE pokemon SET hp = ? " ,health)
+  end
+
   def self.save(name, type, db)
     db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type)
   end
