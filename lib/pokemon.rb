@@ -24,8 +24,8 @@ class Pokemon
     catch = Pokemon.new({id: pokemon_array[0], name: pokemon_array[1], type: pokemon_array[2], hp: pokemon_array[3],  db:db})
   end
 
-  def self.alter_hp(hp, db)
-    db.execute("UPDATE hp SET hp = ? WHERE name = ?", hp, self)
+  def alter_hp(hp, db)
+    db.execute("UPDATE hp SET hp = ? WHERE name = ?", hp)
   end
 
 end
