@@ -1,13 +1,11 @@
 class Pokemon
   attr_accessor :name, :type, :db, :id
-  @@all = []
 
-  def initialize(name, type
+
+  def initialize(name, type, db)
     @name = name
     @type = type
-    @@all  << self
-
-
+    @db = db
   end
 
   def self.save(name, type)
@@ -17,8 +15,8 @@ class Pokemon
 
   def self.find(id)
     sql = "SELECT * FROM pokemon WHERE id = ?"
-    pokemon = db.execute(sql, id)
-    Pokemon.new(pokemon[0], pokemon[1], pokemon[2])
+    result = db.execute(sql, id)
+    Pokemon.new(id: result[0], name: result[1], type: pokemon[2])
     # Pokemon.reify_from_row(row).flatten
     # finds based on id, returns a new Pokemon object, selects their row from the db, using the id number
   end
