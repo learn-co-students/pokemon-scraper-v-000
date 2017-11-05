@@ -1,31 +1,35 @@
+require 'pry'
 class Pokemon
-  attr_accessor :name, :type, :db, :id
+  attr_accessor :id, :name, :type, :db
 
 
-  def initialize(name, type, db)
-    @name = name
-    @type = type
-    @db = db
+  def initialize(args)
+    @name = args[:name]
+    @type = args[:type]
+    @db = args[:db]
+    @id = args[:id]
   end
 
-  def self.save(name, type)
-    #saves instance with correct id
-      db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type)
+  def self.save(name, type, db)
+      sql = "INSERT INTO pokemon (name, type) VALUES (?, ?)"
+      db.execute(sql, name, type)
   end
 
-  def self.find(id)
+
+  def self.find(id, db)
     sql = "SELECT * FROM pokemon WHERE id = ?"
-    result = db.execute(sql, id)
-    Pokemon.new(id: result[0], name: result[1], type: pokemon[2])
-    # Pokemon.reify_from_row(row).flatten
-    # finds based on id, returns a new Pokemon object, selects their row from the db, using the id number
+    result = db.execute(sql, id).flatten #flatten returns array w/o nested arrays.
+    Pokemon.new(id: result[0], name: result[1], type: result[2], db:db)
   end
+end
 
+  # Pokemon.reify_from_row(row).flatten
+  # finds based on id, returns a new Pokemon object, selects their row from the db, using the id number
   # def alter(new_health, db)
       # sql = "UPDATE pokemon SET hp = ? WHERE id = ?"
   #   db.execute(sql, new_health, self.id)
   # end
-end
+
   #
   # def self.find(id_num, db)
   #   pokemon_info = db.execute("SELECT * FROM pokemon WHERE id=?", id_num).flatten
