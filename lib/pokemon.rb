@@ -1,3 +1,5 @@
+require 'pry'
+
 class Pokemon
 
   @@all = []
@@ -6,7 +8,7 @@ class Pokemon
 
   def initialize(id)
     self.id = id
-    self.all << self
+    self.class.all << self
   end
 
   def self.all
@@ -19,8 +21,13 @@ class Pokemon
 
   def self.find(id, database_connection)
     # pk = database_connection.execute("SELECT * FROM pokemon WHERE id = ?", id)
-    pk = database_connection.execute("SELECT id FROM pokemon WHERE id = ?", id)
-    Pokemon.new(pk)
+    #pk = database_connection.execute("SELECT id FROM pokemon WHERE id = ?", id)
+    pk = database_connection.execute("SELECT * FROM pokemon WHERE id = ?", id)
+    x = Pokemon.new(pk[0][0])
+    x.name = pk[0][1]
+    x.type = pk[0][2]
+    x 
+    binding.pry
     #self.all[id - 1]
   end
 
