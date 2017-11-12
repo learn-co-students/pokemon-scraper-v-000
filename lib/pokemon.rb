@@ -1,10 +1,9 @@
 class Pokemon
-    attr_accessor :id, :name, :type, :db, :attributes
+    attr_accessor :id, :name, :type, :db
 
     @@all = []
 
- def initialize(atrributes)
-    @attributes.each {|key, value| self.send(("#{key}="), value)}
+ def initialize(:id, :name, :type, :db)
     @id = id
     @name = name
     @type = type
