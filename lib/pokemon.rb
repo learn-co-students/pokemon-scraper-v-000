@@ -1,15 +1,12 @@
 class Pokemon
-    attr_accessor :id, :name, :type, :db
+    attr_accessor :id, :name, :type, :db, :hp
 
-    @@all = []
-
- def initialize(atrributes)
-    attributes.each {|key, value| self.send(("#{key}="), value)}
+ def initialize(id:, name:, type:, db: db = nil, hp: hp=nil)
     @id = id
     @name = name
     @type = type
     @db = db
-    @@all << self
+    @hp = hp
  end
 
  def self.all
@@ -21,12 +18,12 @@ class Pokemon
  end
  
  def self.find(id, db)
-    atrributes = {:id=>nil, :name=>"", :type=>"" }
-    keys = hash.keys
-    db.execute("SELECT * FROM pokemon WHERE id = '#{id}'").flatten.each_with_index do |v, i|
-        #binding.pry
-        atrributes[keys[i]] = v
-    end
- end    
+    array = db.execute("SELECT * FROM pokemon WHERE id = '#{id}'").flatten
+    Pokemon.new(id: array[0], name: array[1], type: array[2], hp: array[3])
+ end
+
+ def alter_hp(hp, db)
+    db.execute("UPDATE pokemon SET hp = ? WHERE pokemon.name = ?", hp, self.name)
+ end 
 
 end
