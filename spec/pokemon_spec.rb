@@ -1,4 +1,5 @@
 require_relative "spec_helper"
+require "pry"
 
 describe "Pokemon" do
   before do
@@ -62,6 +63,7 @@ describe "Pokemon" do
     # He used splash. It wasn't very effective. It did one damage.
     it "alters Pikachu's hp to 59" do
       pikachu.alter_hp(59, @db)
+      #binding.pry
       expect(Pokemon.find(1, @db).hp).to eq(59)
     end
 
