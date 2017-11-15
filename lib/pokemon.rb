@@ -17,4 +17,12 @@ class Pokemon
     Pokemon.new(id: array[0][0], name: array[0][1], type: array[0][2], db: db)
   end
 
+  def hp
+    @db.execute("SELECT hp FROM pokemon WHERE name = ?", @name)[0][0]
+  end
+
+  def alter_hp(num, db)
+    db.execute("UPDATE pokemon SET hp = ? WHERE name = ?;", num, self.name)
+  end
+
 end
