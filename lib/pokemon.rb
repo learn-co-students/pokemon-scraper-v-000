@@ -1,5 +1,7 @@
+require 'pry'
+
 class Pokemon
-  attr_accessor :id, :name, :type, :db
+  attr_accessor :id, :name, :type, :db, :hp
 
   @@all = []
 
@@ -17,9 +19,8 @@ class Pokemon
   end
 
   def self.find(id, db)
-    @@all.detect do |pokemon|
-      pokemon.id = id
-    end
+    pokemon_array = db.execute("SELECT * FROM pokemon WHERE id = (?)", id).flatten
+    Pokemon.new(id: pokemon_array[0], name: pokemon_array[1], type: pokemon_array[2], db: db)
   end
 
 
