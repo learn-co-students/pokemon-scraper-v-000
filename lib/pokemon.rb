@@ -1,3 +1,4 @@
+require 'pry'
 class Pokemon
   attr_accessor :name,:type,:db, :id,:hp
   BONUS=60
@@ -40,6 +41,8 @@ class Pokemon
     db.execute("UPDATE pokemon SET hp=? WHERE name=?;",hp,@name)
     #id=db.execute("SELECT id FROM pokemon WHERE name='Pikachu'")[0][0]
     @hp=hp
+    binding.pry
+
     puts Pokemon.find(1, @db).name
   end
 
