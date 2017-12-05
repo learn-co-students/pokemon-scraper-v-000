@@ -1,2 +1,25 @@
 class Pokemon
+    attr_accessor :id, :name, :type, :hp, :db
+    
+    def initialize(id:, name:, type:, hp: nil, db:)
+        self.id = id
+        self.name = name
+        self.type = type
+        self.hp = hp
+        self.db = db
+    end
+    
+    def self.save(name, type, db)
+        db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", [name, type])
+    end
+    
+    def self.find(id, db)
+        poke_data = db.execute("SELECT * FROM pokemon WHERE id = (?)", [id])
+        Pokemon.new(id: poke_data[0][0], name: poke_data[0][1], type: poke_data[0][2], hp: poke_data[0][3], db: db)
+    end
+    
+    def alter_hp(new_hp, db)
+        db.execute("UPDATE pokemon SET hp = (?) WHERE id = (?)", [new_hp, self.id])
+    end
+    
 end
