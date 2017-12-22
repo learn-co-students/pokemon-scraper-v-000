@@ -40,16 +40,16 @@ describe "Pokemon" do
     end
   end
 
-  describe "BONUS" do
-
-    before do
-      @sql_runner.execute_create_hp_column
-      Pokemon.save('Pikachu', 'electric', @db)
-      Pokemon.save('Magikarp', 'water', @db)
-    end
-
-    let(:pikachu){Pokemon.find(1, @db)}
-    let(:magikarp){Pokemon.find(2, @db)}
+  # describe "BONUS" do
+  # 
+  #   before do
+  #     @sql_runner.execute_create_hp_column
+  #     Pokemon.save('Pikachu', 'electric', @db)
+  #     Pokemon.save('Magikarp', 'water', @db)
+  #   end
+  # 
+  #   let(:pikachu){Pokemon.find(1, @db)}
+  #   let(:magikarp){Pokemon.find(2, @db)}
 
     # remove the 'x' before 'it' to run these tests
     # xit "knows that a pokemon have a default hp of 60" do
@@ -70,5 +70,5 @@ describe "Pokemon" do
     #   magikarp.alter_hp(0, @db)
     #   expect(Pokemon.find(2, @db).hp).to eq(0)
     # end
-  end
+  # end
 end
