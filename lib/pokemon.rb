@@ -6,11 +6,12 @@ class Pokemon
   @@all = []
 
 
-  def initialize(id=nil, name, type, db)
+  def initialize(id=nil, name=nil, type=nil, db=nil, hp = 60)
     @id = id
     @name = name
     @type = type
     @db = db
+    @hp = 60
     @@all << self
 end
 
@@ -27,9 +28,9 @@ end
     self.all.bsearch {|pokemon| pokemon.id == id}
   end
 
-#  def BONUS
-#    db.execute("ALTER TABLE pokemon ADD hp INTEGER;")
-#    db.execute("INSERT INTO pokemon (hp) VALUES (?);", @hp)
-#  end
+  def BONUS
+    db.execute("ALTER TABLE pokemon ADD hp INTEGER;")
+    db.execute("INSERT INTO pokemon (hp) VALUES (?);", @hp)
+  end
 
 end
