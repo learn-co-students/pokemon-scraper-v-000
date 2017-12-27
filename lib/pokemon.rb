@@ -22,16 +22,6 @@ end
   def self.save(name, type, db)
     db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?);",name, type)
     self.new(id: db.execute("SELECT * FROM pokemon WHERE name = ?", name).flatten[0], name: db.execute("SELECT * FROM pokemon WHERE name = ?", name).flatten[1], type: db.execute("SELECT * FROM pokemon WHERE name = ?", name).flatten[2], db: db)
-
-    # sql = <<-SQL
-    #   BEGIN
-    #     IF EXISTS (SELECT hp FROM pokemon) THEN
-    #        INSERT INTO pokemon (hp) VALUES (?)
-    #     END IF
-    #   END
-    # SQL
-    # db.execute(sql, 60)
-
   end
 
   def self.find(id, db)
