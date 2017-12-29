@@ -8,6 +8,11 @@ class SQLRunner
     execute_sql(sql)
   end
 
+  # def execute_migration_sql
+  #   sql = File.read('db/migration.sql')
+  #   execute_sql(sql)
+  # end
+
   def execute_create_hp_column
     sql = File.read('db/alter_table_migration.sql')
     execute_sql(sql)

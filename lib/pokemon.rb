@@ -1,15 +1,14 @@
 
-require 'pry'
 class Pokemon
 
-  attr_accessor :id, :name, :type, :db
+  attr_accessor :id, :name, :type, :hp, :db
 
 
-  def initialize (id:, name:, type:, hp:, db:)
+  def initialize (id:, name:, type:, hp: nil, db:)
     @id = id
     @name = name
     @type = type
-    @hp = 60
+    @hp = hp
     @db = db
 
   end
@@ -28,8 +27,14 @@ class Pokemon
 
   def self.find (id_num, db)
     pokemon_data = db.execute("SELECT * FROM pokemon WHERE id = ?", id_num).flatten
+    # binding.pry
     Pokemon.new(id: pokemon_data[0], name: pokemon_data[1], type: pokemon_data[2], db: db)
   end
 
+
+  def alter_hp(hp, db)
+    db.execute ("INSERT INTO pokemon hp VALUES ?" hp)
+
+  end
 
 end
