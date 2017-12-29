@@ -1,11 +1,13 @@
-require 'pry'
-
 class Pokemon
   attr_accessor :id, :name, :type, :db, :hp
 
   def initialize(arg)
     arg.each {|key, value| self.send(("#{key}="), value)}
   end
+
+  # def initialize(id:, name:, type:, hp: nil, db:)
+  #   @id, @name, @type, @hp, @db = id, name, type, hp, db
+  # end
 
   def self.save(name, type, db)
     db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", "#{name}", "#{type}")
