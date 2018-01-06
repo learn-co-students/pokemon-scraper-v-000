@@ -11,11 +11,7 @@ class Pokemon
     end
 
     def initialize(id:, name:, type:, hp: 60, db:)
-        @id = id
-        @name = name
-        @type = type
-        @hp = hp
-        @db = db
+        @id, @name, @type, @hp, @db = id, name, type, hp, db
     end
 
     def alter_hp(hp, db)
