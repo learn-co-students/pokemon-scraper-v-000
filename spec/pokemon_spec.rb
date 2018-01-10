@@ -40,6 +40,8 @@ describe "Pokemon" do
     end
   end
 
+
+  <<-DOC
   describe "BONUS" do
 
     before do
@@ -71,4 +73,5 @@ describe "Pokemon" do
       expect(Pokemon.find(2, @db).hp).to eq(0)
     end
   end
+  DOC
 end
