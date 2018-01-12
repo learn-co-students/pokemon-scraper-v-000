@@ -30,9 +30,10 @@ class Pokemon
     p = self.new(name, type, db = nil, id, hp = 60)
   end
 
-def alter_hp(id, db)
-  name = self.name
-  db.execute("UPDATE pokemon SET hp = (?) WHERE name = \'#{name}\';", hp)
-end
+def alter_hp(hp, db)
+  id = self.id
+   a = Pokemon.find(id, db)
+   a.hp = hp
+  end
 
 end
