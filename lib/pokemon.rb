@@ -32,8 +32,8 @@ class Pokemon
 
 def alter_hp(hp, db)
   id = self.id
-   a = Pokemon.find(id, db)
-   a.hp = hp
+  name = self.name
+  db.execute("INSERT INTO pokemon ( name, type, hp) VALUES (?, ?, ?)", name, type, hp)
   end
 
 end
