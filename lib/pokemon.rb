@@ -17,8 +17,8 @@ class Pokemon
     db.execute("INSERT INTO pokemon (name, type) VALUES (?,?)", name, type)
   end 
   
-  def self.find
-    
+  def self.find(id, db)
+    # The find method creates a new Pokemon after selecting their row from the database by their id number
   end
   
 end
