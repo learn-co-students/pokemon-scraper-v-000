@@ -1,5 +1,5 @@
 class Pokemon
-  attr_accessor :id, :name, :type, :db
+  attr_accessor :id, :name, :type, :db, :hp
   @@all = []
 
 
@@ -16,12 +16,17 @@ class Pokemon
   end
 
   def self.save(name, type, db)
-    db.execute("INSERT INTO pokemon (name, type) VALUES (?,?)",name, type)
+    db.execute("INSERT INTO pokemon (name, type) VALUES (?,?);",name, type)
   end
 
   def self.find(id, db)
-    binding.pry
-    column = db.execute("SELECT * FROM pokemon WHERE id =(?)",id)[0]
+    column = db.execute("SELECT * FROM pokemon WHERE id =(?);",id)[0]
+    self.new(id: id, name: column[1], type: column[2],db: db)
   end
 
+  def alter_hp(hp, db)
+    self.hp = hp
+    binding.pry
+    db.execute("UPDATE pokemon SET hp = (?) Where id = (?);",hp, self.id)
+  end
 end
