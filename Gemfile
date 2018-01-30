@@ -12,3 +12,5 @@ gem 'rspec', '>= 3.0'
 
 # Debugging
 gem 'pry'
+
+gem 'learn-co'
