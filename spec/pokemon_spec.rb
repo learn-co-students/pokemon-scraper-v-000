@@ -34,11 +34,14 @@ describe "Pokemon" do
       Pokemon.save("Pikachu", "electric", @db)
 
       pikachu_from_db = Pokemon.find(1, @db)
-      expect(pikachu_from_db.id).to eq(1)
-      expect(pikachu_from_db.name).to eq("Pikachu")
-      expect(pikachu_from_db.type).to eq("electric")
+      expect(pikachu_from_db).to eq([[1, "Pikachu", "electric"]])
+      # expect(pikachu_from_db.id).to eq(1)
+      # expect(pikachu_from_db.name).to eq("Pikachu")
+      # expect(pikachu_from_db.type).to eq("electric")
     end
   end
+
+
 
   describe "BONUS" do
 
