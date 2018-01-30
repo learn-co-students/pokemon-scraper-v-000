@@ -1,3 +1,4 @@
+require 'pry'
 class Scraper
   attr_accessor :file, :parsed_file, :all_pokemon, :db
 
@@ -6,6 +7,7 @@ class Scraper
     self.file = File.open("pokemon_index.html")
     self.parsed_file = Nokogiri::HTML.parse(file)
     self.all_pokemon = catch_em_all
+    binding.pry
   end
 
   def catch_em_all
