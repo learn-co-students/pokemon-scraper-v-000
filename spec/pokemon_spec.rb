@@ -10,6 +10,8 @@ describe "Pokemon" do
 
   let(:pokemon) {Pokemon.new(id: 1, name: "Pikachu", type: "electric", db: @db)}
 
+  #let(:pokemon) {Pokemon.new(1, "Pikachu", "electric", @db)}
+
   describe ".initialize" do
     it 'is initialized with keyword arguments of name, type and db' do
       expect(pokemon).to respond_to(:id)
