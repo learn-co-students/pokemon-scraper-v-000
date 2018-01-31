@@ -1,4 +1,6 @@
 class Pokemon
+    DEFAULT_HP = 60
+
     attr_accessor :id, :name, :type, :hp, :db
 
     def initialize(id:, name:, type:, hp: nil, db:)
@@ -7,6 +9,15 @@ class Pokemon
         @type = type
         @hp = hp
         @db = db
+    end
+
+    def alter_hp(hp, db)
+        @hp = hp
+
+        prepared_update_statement =
+            db.prepare('UPDATE pokemon SET hp = ? WHERE id = ?')
+        
+        prepared_update_statement.execute(@hp, @id)
     end
 
     def self.save(name, type, db)
