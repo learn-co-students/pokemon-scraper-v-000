@@ -1,13 +1,9 @@
 class Pokemon
-attr_accessor :id, :name, :type, :db, :hp
+attr_accessor :id, :name, :type, :hp, :db
   @@all = []
 
   def initialize(pokemon)
-    @id = pokemon[:id]
-    @name = pokemon[:name]
-    @type = pokemon[:type]
-    @db = pokemon[:db]
-    pokemon[:hp] ? (@hp = pokemon[:hp]) : (@hp = 60)
+    pokemon.each {|key, value| self.send("#{key}=", value)}
     @@all << self
   end
 
@@ -20,8 +16,8 @@ attr_accessor :id, :name, :type, :db, :hp
     Pokemon.new(id: row[0], name: row[1], type: row[2], hp: row[3], db: db)
   end
 
-  def alter_hp(new_hp, db)
-    db.execute("UPDATE pokemon SET hp = #{new_hp} WHERE id = #{id}")
+  def alter_hp(hp, db)
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", hp, self.id)
   end
 
 end
