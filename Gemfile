@@ -8,7 +8,7 @@ gem 'nokogiri'
 gem 'sqlite3'
 
 # Testing
-gem 'rspec', '>= 3.0'
+gem 'rspec', '>= 3.7'
 
 # Debugging
 gem 'pry'
