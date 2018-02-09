@@ -1,21 +1,25 @@
 require 'pry'
 class Pokemon
-  attr_accessor :id, :name, :type, :db
+  attr_accessor :id, :name, :type, :db, :hp
 
-  def initialize(id = nil, name =  nil, type =  nil, db =  nil)
+  def initialize(id:, name:, type:, hp:  nil, db:)
     @id = id
     @name = name
     @type = type
     @db = db
+    @hp = hp
   end
 
   def self.save(name, type, db)
-    db.execute("INSERT INTO pokemon (id, name, type)  VALUES(?,?,?)", 1, name, type)
+    db.execute("INSERT INTO pokemon (name, type)  VALUES(?,?)", name, type)
   end
 
   def self.find(id, db)
-    name = db.execute("SELECT name FROM pokemon WHERE id = #{id}")[0][0]
-    type = db.execute("SELECT type FROM pokemon WHERE id = #{id}")[0][0]
-    pokemon = Pokemon.new(id, name, type, db)
+    pokemon_info = db.execute("SELECT * FROM pokemon WHERE id=?", id).flatten
+    Pokemon.new(id: pokemon_info[0], name: pokemon_info[1], type: pokemon_info[2], hp: pokemon_info[3], db: db)
+  end
+
+  def alter_hp(hp, db)
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", hp, self.id)
   end
 end
