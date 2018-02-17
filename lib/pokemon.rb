@@ -1,5 +1,5 @@
 class Pokemon
-  attr_accessor :id, :name, :type, :db
+  attr_accessor :id, :name, :type, :db, :hp
   
   @@all = []
   def initialize(name:, type:, db:, id:)
@@ -13,31 +13,31 @@ class Pokemon
   def self.save(name, type, db)
     #@id += 1
     @vals = db.execute("INSERT INTO pokemon (id, name, type) VALUES (?, ?, ?)", [@@id,name,type])
+    #binding.pry
     @vals.each{|item|
       self.new(id: @@id, name: name, type: type)
       #binding.pry
     }
   end
   
-  def self.find(id, db)
-    db.execute("SELECT pokemon.id, pokemon.name, pokemon.type FROM pokemon WHERE pokemon.id = ?", id.to_i)
+  def self.find(id, db, hp=nil)
+    if hp == nil
+      @hp = 60
+    else
+      @hp = hp
+    end
+    db.execute("SELECT pokemon.id, pokemon.name, pokemon.type, pokemon.hp FROM pokemon WHERE pokemon.id = ?", id.to_i)
     #binding.pry
     #@id = id
     @@all.detect{|i|
       i.id = id
     }
   end
-  
-  # all.each do |cat|
-  # Cat.save(cat.name, cat.breed, cat.age, database_connection)
-  
-  # @@all.each{|item|
-      
-  #   }
-  # Cat.new
-  # Cat.save(cat.name, cat.breed, cat.age, database_connection)
    
   def self.all
     @@all
+  end
+  
+  def alter_hp
   end
 end
