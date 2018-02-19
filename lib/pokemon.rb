@@ -1,14 +1,14 @@
 class Pokemon
   attr_accessor :id, :name, :type, :db, :hp
   
-  @@all = []
+  # @@all = []
   def initialize(name:, type:, db:, id:, hp: nil)
     @name = name
     @type = type
     @db = db
     @id = id
     @hp = hp
-    @@all << self
+    # @@all << self
   end
   
   def self.save(name, type, db)
@@ -16,19 +16,19 @@ class Pokemon
   end
   
   def self.find(id, db)
-    vals = db.execute("SELECT pokemon.id, pokemon.name, pokemon.type FROM pokemon WHERE pokemon.id = ?", id).flatten
-    #binding.pry
+    vals = db.execute("SELECT * FROM pokemon WHERE pokemon.id = ?", id).flatten
     newpoke = self.new(id: vals[0], db: db, name: vals[1], type: vals[2], hp: vals[3])
+    #binding.pry
     #found = @@all.detect{|i| i.id = id}
   end
    
-  def self.all
-    @@all
-  end
+  # def self.all
+  #   @@all
+  # end
   
   def alter_hp(amt, db)
     db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", amt, self.id)
     self.hp = amt
-    binding.pry
+    #binding.pry
   end
 end
