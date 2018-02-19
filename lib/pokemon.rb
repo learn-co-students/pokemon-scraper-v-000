@@ -7,6 +7,7 @@ class Pokemon
     @type = type
     @db = db
     @id = id
+    @hp = hp
     @@all << self
   end
   
@@ -45,7 +46,13 @@ class Pokemon
   
   def alter_hp(amt, db)
     #binding.pry
-    db.execute("UPDATE pokemon SET hp = ?;", amt.to_i)
-    self.hp = amt
+    stm = db.prepare("UPDATE pokemon SET hp = ? WHERE pokemon.id = ?;")
+    #[amt, self.id]
+    stm.bind_param amt, $hp;
+    stm.bind_param self.id, $pokemon.id;
+    stm.execute;
+    stm.close;
+    #self.hp = amt
+    #binding.pry
   end
 end
