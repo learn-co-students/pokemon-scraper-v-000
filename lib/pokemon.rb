@@ -23,16 +23,15 @@ class Pokemon
      db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type)
    end
 
-
+ # for self.find method, it return array every attribute from the pokeman table where each colume value is included in an array.
+ # then we select each of the index.. Aka return each of the roll with they values added
    def self.find(id,db)
-      find_1 = db.execute("SELECT * FROM pokemon WHERE id  = ?", id).flatten
-      self.new(id: find_1[0], name: find_1[1], type: find_1[2], db: db, hp: find_1[3])
+      rolls_in_colums = db.execute("SELECT * FROM pokemon WHERE id  = ?", id).flatten
+      self.new(id: rolls_in_colums[0], name: rolls_in_colums[1], type: rolls_in_colums[2], db: db, hp: rolls_in_colums[3])
    end
-
 
    def alter_hp(hp,db)
      db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", hp, self.id)
    end
-
 
 end
