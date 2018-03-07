@@ -17,7 +17,7 @@ class Pokemon
   end
 
   def self.find(id, db)
-    pokemon = db.execute("SELECT name, type, hp FROM pokemon WHERE id = #{id};")
+    pokemon = db.execute("SELECT name, type FROM pokemon WHERE id = #{id};")
     Pokemon.new(id: id, name: pokemon[0][0], type: pokemon[0][1], db: db)
     # binding.pry
 
@@ -25,6 +25,8 @@ class Pokemon
 
   def alter_hp(hp, db)
     db.execute("UPDATE pokemon SET hp = #{hp} WHERE id = #{self.id};")
-
+    # binding.pry
+    self.hp = hp
+    
   end
 end
