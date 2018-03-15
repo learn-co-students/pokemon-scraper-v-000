@@ -7,6 +7,7 @@ class Pokemon
    @id = id
    @name = name
    @type = type
+   @hp = hp
    @@all << self
   end
   
@@ -19,14 +20,12 @@ class Pokemon
   end
   
   def self.find(id, db)
-    if self.all[id - 1]
-      self.all[id - 1]
-    else
-      Pokemon.new(id: id, name: "Magikarp", type: "water", db: @db)
-    end
+    pokemon_array = db.execute("SELECT * FROM pokemon WHERE id = #{id}").flatten
+    pokemon = Pokemon.new(id: id, name: "#{pokemon_array[1]}", type: "#{pokemon_array[2]}", hp: pokemon_array[3], db: @db)
   end
   
   def alter_hp(hp, db)
-    self.hp = hp
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ?;",hp, self.id)
+    
   end
 end
