@@ -2,9 +2,10 @@ require 'pry'
 
 class Pokemon
 
-  attr_accessor :id, :name, :type, :db
+  attr_accessor :id, :name, :type, :db, :hp
 
-  def initialize(id)
+  def initialize(id, hp = nil)
+    @hp = hp
     @id = id
     @name = name
     @type = type
@@ -24,11 +25,12 @@ class Pokemon
   def self.find(id, db)
     # pokemon = db.execute("SELECT pokemon.name, pokemon.type FROM pokemon WHERE pokemon.id = ?", id).flatten[0]
     # @@all.detect {|poke_obj| poke_obj.name = pokemon}
-    pokemon = db.execute("SELECT pokemon.id, pokemon.name, pokemon.type FROM pokemon WHERE pokemon.id = ?", id).flatten
+    pokemon = db.execute("SELECT pokemon.id, pokemon.name, pokemon.type, pokemon.hp FROM pokemon WHERE pokemon.id = ?", id).flatten
     new_poke = self.new(pokemon[0])
     # binding.pry
     new_poke.name = pokemon[1]
     new_poke.type = pokemon[2]
+    new_poke.hp = pokemon[3]
     new_poke.db = db
     new_poke
   end
