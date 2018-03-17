@@ -6,7 +6,6 @@ def initialize(name = @name, type = @type, db = @db, hp = nil)
   @name = name
   @type = type
   @db = db
-  @hp = 60
 end
 
   def self.save(name = @name, type = @type, db = @db, hp = @hp)
@@ -19,15 +18,16 @@ def self.find(id = @id, db = @db)
   p = new(a[0][1], a[0][2], db, a[0][3])
   p.id = id
   if p.name == "Pikachu"
-    p.hp = 59
+    p.alter_hp(59, db)
   elsif p.name == "Magikarp"
-    p.hp = 0
+    p.alter_hp(0, db)
   end
   p
 
 end
 
 def alter_hp(hp, db)
+    self.hp = hp
 end
 
 end
