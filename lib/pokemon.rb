@@ -17,4 +17,11 @@ class Pokemon
     end
   end
 
+  def self.find(id_number, db)
+    pokemon_database_items = []
+    pokemon_database_items = db.execute("SELECT * FROM pokemon WHERE id = '#{id_number}'")
+    Pokemon.new(id: pokemon_database_items[0], name: pokemon_database_items[1], type: pokemon_database_items[2], db: db)
+    binding.pry
+  end
+
 end
