@@ -16,6 +16,7 @@ describe "Pokemon" do
       expect(pokemon).to respond_to(:name)
       expect(pokemon).to respond_to(:type)
       expect(pokemon).to respond_to(:db)
+      expect(pokemon).to respond_to(:hp)
     end
   end
 
