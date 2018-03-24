@@ -6,6 +6,7 @@ class Pokemon
 
   def initialize(id:, name:, type:, db:)
     @id, @name, @type, @db = id, name, type, db
+    @@all << self
   end
 
   def self.save(pokemon_name, pokemon_type, db)
