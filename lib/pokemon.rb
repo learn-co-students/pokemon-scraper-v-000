@@ -17,7 +17,7 @@ def initialize(id: id, name: name, type: type, db: db)
 
   def self.find(id,db)
     find = db.execute("SELECT * from pokemon WHERE id = ?",id).flatten
-    Pokemon.new(find[0],find[1],find[2])
+    Pokemon.new(id: find[0],name: find[1], type: find[2], db: db)
   end
 #finds a pokemon from database by id number and returns a new pokemon object
 
