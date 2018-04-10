@@ -1,0 +1,1 @@
+database_connection = SQLite3::Database.new('db/pokemon.db')
