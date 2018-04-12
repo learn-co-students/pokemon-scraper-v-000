@@ -1,7 +1,7 @@
 require 'pry'
 class Pokemon
 
-attr_accessor :name, :type, :db, :id
+attr_accessor :name, :type, :db, :id, :hp
 
 
 def initialize(id: id, name: name, type: type, db: db)
@@ -20,5 +20,7 @@ def initialize(id: id, name: name, type: type, db: db)
     Pokemon.new(id: find[0],name: find[1], type: find[2], db: db)
   end
 #finds a pokemon from database by id number and returns a new pokemon object
+
+
 
 end
