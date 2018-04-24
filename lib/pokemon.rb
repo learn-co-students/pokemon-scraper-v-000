@@ -1,14 +1,14 @@
 require 'pry'
 class Pokemon
-  attr_accessor :name, :type, :db, :id, :healthpower
+  attr_accessor :name, :type, :db, :id, :hp
 
   @@all = []
 
-  def initialize(db)
+  def initialize(hp=nil, db)
     @db = db
     @name = name
     @type = type
-    @healthpower = healthpower
+
     @@all << self
   end
 
@@ -22,12 +22,12 @@ class Pokemon
     pokemon.id = result[0][0]
     pokemon.name = result[0][1]
     pokemon.type = result[0][2]
-    pokemon.healthpower = result[0][3]
+    pokemon.hp = result[0][3]
     pokemon
   end
 
-  def alter_hp(hp, db)
-    Pokemon.find(self.id, db).healthpower = hp
+  def alter_hp(new_hp, db)
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ? ", new_hp, self.id)
   end
 
 end
