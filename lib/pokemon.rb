@@ -18,7 +18,6 @@ class Pokemon
          newPokemon = db.execute(
         "SELECT name, type FROM pokemon
         WHERE id = ? ", id).flatten
-        binding.pry
         Pokemon.new(id: id, name: newPokemon[0], type: newPokemon[1], db: db)
     end
 end
