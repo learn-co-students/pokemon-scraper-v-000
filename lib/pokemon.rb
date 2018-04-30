@@ -2,11 +2,17 @@ require "pry"
 class Pokemon
   attr_accessor :id, :name, :type, :db
 
-  def initialize (id:, name:, type:, db:)
+  def initialize (id:, name:, type:, db:, hp: nil)
     @id = id
     @name = name
     @type = type
     @db = db
+    @hp = hp
+  end
+
+  def alter_hp (new_hp, alt_db)
+    @hp = new_hp
+#    alt_db.execute ("UPDATE pokemon SET hp=? WHERE id=?",new_hp,id)
   end
 
   def self.save (name, type, db)
@@ -16,6 +22,10 @@ class Pokemon
   def self.find (id, db)
     db.results_as_hash = true
     results = db.execute("SELECT * FROM pokemon WHERE id=?",id)
-    Pokemon.new(id: results[0]["id"], name: results[0]["name"], type: results[0]["type"], db: db)
+    if results[0].has_key?("hp")
+      Pokemon.new(id: results[0]["id"], name: results[0]["name"], type: results[0]["type"], hp: results[0]["hp"], db: db)
+    else
+      Pokemon.new(id: results[0]["id"], name: results[0]["name"], type: results[0]["type"], db: db)
+    end
   end
 end
