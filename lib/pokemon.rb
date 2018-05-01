@@ -1,17 +1,16 @@
 require "pry"
 class Pokemon
-  attr_accessor :id, :name, :type, :db
+  attr_accessor :id, :name, :type, :db, :hp
 
   def initialize (id:, name:, type:, db:, hp: nil)
-    @id = id
-    @name = name
-    @type = type
-    @db = db
-    @hp = hp
+    @id, @name, @type, @hp, @db = id, name, type, hp, db
   end
 
+  # What is the deal here with passing db?   Since this is an instance method, we already have a db!
   def alter_hp (new_hp, alt_db)
     @hp = new_hp
+    ## Burned again!   Adding space between method name and args results in cryptic error about expecing = by new_hp position!
+    alt_db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, self.id)
 #    alt_db.execute ("UPDATE pokemon SET hp=? WHERE id=?",new_hp,id)
   end
 
