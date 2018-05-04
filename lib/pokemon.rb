@@ -9,6 +9,11 @@ class Pokemon
     @id = id
     @name = name
     @type = type
+    @@all << self
+  end
+  
+  def self.all 
+    @@all
   end
   
   def self.save(name, type, db)
@@ -16,9 +21,8 @@ class Pokemon
   end
   
   def self.find(id, db) 
-    pokemon = db.execute("SELECT * FROM pokemon WHERE id = #{id}")
-     
-    
+    pokemon = db.execute("SELECT * FROM pokemon WHERE id = ?", id)
+     binding.pry
   end
   
   
