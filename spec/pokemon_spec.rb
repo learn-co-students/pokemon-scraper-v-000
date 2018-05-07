@@ -57,7 +57,7 @@ describe "Pokemon" do
       # remember to also update the initialize method to accept an argument of hp that defaults to nil if not set (so it still passes the non-bonus tests)
       expect(@db.execute("SELECT hp FROM pokemon").flatten.first).to eq(60)
     end
-
+=begin
     # So Ian and you have decided to battle.  He chose Magikarp (rookie mistake), and you chose Pikachu.
     # He used splash. It wasn't very effective. It did one damage.
     xit "alters Pikachu's hp to 59" do
@@ -70,5 +70,7 @@ describe "Pokemon" do
       magikarp.alter_hp(0, @db)
       expect(Pokemon.find(2, @db).hp).to eq(0)
     end
+=end
+
   end
 end
