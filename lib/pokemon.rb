@@ -1,7 +1,7 @@
 require 'pry'
 
 class Pokemon
-  attr_accessor :id, :name, :type, :db
+  attr_accessor :id, :name, :type, :db, :hp
   
   def initialize(name:, type:, db:, id:)
     @name = name
@@ -19,5 +19,11 @@ class Pokemon
     query = query.flatten
     new_pokemon = Pokemon.new(name: query[0], type: query[1], id: id, db: db)
   end 
+  
+  def alter_hp(new_health, db)
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_health, @id)
+    query = db.execute("SELECT hp FROM pokemon WHERE id = ?", @id)
+    @hp = query.flatten
+  end
   
 end
