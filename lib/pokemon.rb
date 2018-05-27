@@ -1,26 +1,34 @@
 class Pokemon
 	attr_accessor :id, :name, :type, :db
-	attr_reader :row_idx
+	
+	@@all = []
+	@@row_idx = 0
+	
+	def self.row_idx
+		@@row_idx
+	end
 
 	def self.save(name, type, db)
 		db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)",name, type)
+		@@all << self
+	end
+
+	def self.find(id, db)
+		arr = db.execute("SELECT name, type, id FROM pokemon WHERE id IN (?)", id)
+		poke = Pokemon.new(arr[0][0], arr[0][1], db, arr[0][2])
+		poke
 	end
 
 	def initialize (name = nil, type = nil, db = nil, id = nil)
 		self.name = name
 		self.type = type
 		self.db = db
-		self.id = row_idx_add
+		self.id = (!id ? id : self.class.row_idx_add)
 	end
 
 private
-	def row_idx_add
-		if row_idx == nil
-			@row_idx = 1
-		else
-			@row_idx += 1
-		end
-
-		row_idx
+	def self.row_idx_add
+		@@row_idx += 1
+		@@row_idx
 	end
 end
