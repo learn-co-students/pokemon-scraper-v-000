@@ -12,15 +12,12 @@ attr_accessor :id, :name, :type, :db
     @db = db
   end
 
-  def self.save(name, type, db) # used to pass
-  # def self.save(name:, type:, db:)
-    db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type) #passes
+  def self.save(name, type, db)
+    db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type)
     sql = <<-SQL
       INSERT INTO songs pokemon (name, type)
       VALUES (?, ?)
     SQL
-
-    # @db.execute(sql, self.name, self.type) # NoMethodError: undefined method `type' for Pokemon:Class
   end
 
   # def self.find(id, db) # undefined method `id' for nil:NilClass
@@ -37,7 +34,13 @@ attr_accessor :id, :name, :type, :db
     # new_pokemon = Pokemon.new(id:, name:, type:, db:) # syntax error, unexpected ',' (SyntaxError)
     # new_pokemon = Pokemon.new # missing keywords: id, name, type, db
     # new_pokemon = Pokemon.new(id: pok[0][0], name: pok[0][1], type: pok[0][2], db:)
-    @id = db.execute("SELECT last_insert_rowid() FROM pokemon")[0][0]
-    # new_pokemon
+    # @id = db.execute("SELECT last_insert_rowid() FROM pokemon")[0][0]
+    pokemon_row = db.execute("SELECT * FROM pokemon where pokemon.id = id")
+    pokemon_from_db = Pokemon.new(name:, type:, db:, id:)
+    pokemon_from_db.id = pokemon_row[0]
+    pokemon_from_db.name = pokemon_row[1]
+    pokemon_from_db.name = pokemon_row[2]
+    binding.pry
+    pokemon_from_db
   end
 end
