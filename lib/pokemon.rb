@@ -28,11 +28,6 @@ attr_accessor :id, :name, :type, :db, :hp
   end
 
   def alter_hp(new_hp, db)
-    # pokemon_from_db = Pokemon.find(id, db)
-    # pokemon_from_db.hp = new_hp
-    # pokemon_from_db
-    # binding.pry
-    # db.execute("UPDATE pokemon SET hp = ? WHERE id = pokemon_from_db.id", new_hp) # no such column: pokemon_from_db.id
     db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, self.id)
   end
 end
