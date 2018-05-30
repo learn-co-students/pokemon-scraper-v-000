@@ -32,6 +32,6 @@ attr_accessor :id, :name, :type, :db, :hp
     # pokemon_from_db
     # binding.pry
     # db.execute("UPDATE pokemon SET hp = ? WHERE id = pokemon_from_db.id", new_hp) # no such column: pokemon_from_db.id
-    db.execute("UPDATE pokemon SET hp = ? WHERE id = 1", new_hp)
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, self.id)
   end
 end
