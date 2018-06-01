@@ -17,7 +17,11 @@ end
 def self.find(id, db)
   pokemon_info = db.execute("SELECT * FROM pokemon WHERE id = ?",id)
   pokemon_info.flatten!
-  Pokemon.new(id: pokemon_info[0], name: pokemon_info[1], type: pokemon_info[2], db: db)
+  Pokemon.new(id: pokemon_info[0], name: pokemon_info[1], type: pokemon_info[2], hp: pokemon_info[3], db: db)
+end
+
+def alter_hp(new_hp, db)
+  db.execute("UPDATE pokemon SET hp = ? WHERE id = ?",new_hp, id)
 end
 
 end
