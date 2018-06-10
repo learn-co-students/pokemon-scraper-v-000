@@ -23,10 +23,12 @@ class Pokemon
     #This is a little cringey right here...
     pok=Pokemon.new(data[1],data[2])
     pok.id=data[0]
+    pok.hp=data[3]
     pok
   end
 
   def alter_hp(newhp,db)
+    @hp=newhp
     db.execute("UPDATE pokemon SET hp=(?) WHERE id=(?)",newhp,self.id)
   end
 
