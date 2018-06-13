@@ -10,6 +10,8 @@ class Pokemon
 
   def self.find( id, db)
     array = db.execute("SELECT * FROM pokemon WHERE id = ?", id)
+    new_instance = self.new(id:array[0], name:array[1], type:array[2], db:db)
+    new_instance
   end
 
 end
