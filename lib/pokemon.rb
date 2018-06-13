@@ -10,7 +10,7 @@ class Pokemon
   def initialize(id:, name:, type:, db:)
   end
 
-  def save(name, type, db)
+  def self.save(name, type, db)
     Pokemon.new(id: self.all.length + 1, name: name, type: type, db: db)
   end
 
