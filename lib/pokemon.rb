@@ -1,6 +1,12 @@
 class Pokemon
   attr_accessor :id, :name, :type, :db
 
+  @@all = []
+
+  def self.all
+    @@all
+  end
+
   def initialize(id:, name:, type:, db:)
   end
 
