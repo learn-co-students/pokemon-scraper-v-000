@@ -1,7 +1,7 @@
 class Pokemon
   attr_accessor :name, :type, :hp, :id, :db
   
-  def initialize(name:, type:, hp: nil, id:, db:)
+  def initialize(name:, type:, hp: 60, id:, db:)
     @name = name
     @type = type
     @hp = hp
@@ -21,5 +21,4 @@ class Pokemon
   def alter_hp(hp, db)
     db.execute("UPDATE pokemon SET hp = ?", hp)
   end
-  
 end
