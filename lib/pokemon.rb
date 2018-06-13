@@ -5,7 +5,8 @@ class Pokemon
   end
 
   def save(name, type, db)
-    
+    Pokemon.new(id:, name: name, type: type, db: db)
+
   end
 
 end
