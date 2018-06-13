@@ -11,7 +11,7 @@ class Pokemon
   end
 
   def save(name, type, db)
-    Pokemon.new(id:, name: name, type: type, db: db)
+    Pokemon.new(id: self.all.length + 1, name: name, type: type, db: db)
 
   end
 
