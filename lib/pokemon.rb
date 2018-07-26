@@ -15,7 +15,6 @@ class Pokemon
     @name = name
     @type = type
     @db = db
-    @hp = 60
     @@all << self
 
   end
@@ -23,6 +22,16 @@ class Pokemon
   def self.save(name, type, database_connection)
 
     database_connection.execute("INSERT INTO pokemon (name, type) VALUES ( ?, ?)" ,name, type)
+
+    begin
+    database_connection.execute("SELECT hp FROM pokemon")
+  #  binding.pry
+    rescue
+
+    else
+    database_connection.execute("UPDATE pokemon SET hp = 60")
+  #  binding.pry
+    end
 
   end
 
@@ -34,20 +43,35 @@ class Pokemon
 
     begin
     db.execute("SELECT hp FROM pokemon")
+  #  binding.pry
     rescue
 
     else
-    db.execute("INSERT INTO pokemon (hp) VALUES (60)")
+    pokemon_ob.hp = pokemon_db[0][3]
   #  binding.pry
     end
-    #binding.pry
-
+  #  binding.pry
     pokemon_ob.id = pokemon_db[0][0]
     pokemon_ob.name = pokemon_db[0][1]
     pokemon_ob.type = pokemon_db[0][2]
     pokemon_ob.db = db
 
     pokemon_ob
+  end
+
+  def alter_hp(hp, db)
+    if db != nil
+      begin
+        db.execute("SELECT hp FROM pokemon")
+      rescue
+        puts "No hp added"
+      else
+        #binding.pry
+        db.execute("UPDATE pokemon SET hp = (#{hp}) WHERE name = '#{self.name}'")
+        @hp = hp
+      end
+
+    end
   end
 
 end

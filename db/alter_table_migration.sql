@@ -1,2 +1,2 @@
 ALTER TABLE pokemon ADD hp INTEGER;
-INSERT INTO pokemon (hp) VALUES (60);
+UPDATE pokemon SET hp =60 where name!=null;
