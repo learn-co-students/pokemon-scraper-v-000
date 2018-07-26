@@ -24,6 +24,7 @@ class Pokemon
     self.hp = num
   end
   def bonus
-default = db.execut("Alter table pokemon modify new_pokemon.hp default 60")
+default = db.execute("Alter table pokemon modify new_pokemon.hp default 60")
+pikachu = db.execute("update pokemon set hp = 59 where name = 'pikachu' ")
   end
 end
