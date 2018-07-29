@@ -31,6 +31,7 @@ describe "Pokemon" do
   describe ".find" do
     it 'finds a pokemon from the database by their id number and returns a new Pokemon object' do
       # The find method creates a new Pokemon after selecting their row from the database by their id number.
+      @sql_runner.execute_create_hp_column
       Pokemon.save("Pikachu", "electric", @db)
 
       pikachu_from_db = Pokemon.find(1, @db)
@@ -60,7 +61,7 @@ describe "Pokemon" do
 
     # So Ian and you have decided to battle.  He chose Magikarp (rookie mistake), and you chose Pikachu.
     # He used splash. It wasn't very effective. It did one damage.
-    xit "alters Pikachu's hp to 59" do
+    it "alters Pikachu's hp to 59" do
       pikachu.alter_hp(59, @db)
       expect(Pokemon.find(1, @db).hp).to eq(59)
     end
