@@ -31,7 +31,10 @@ describe "Pokemon" do
   describe ".find" do
     it 'finds a pokemon from the database by their id number and returns a new Pokemon object' do
       # The find method creates a new Pokemon after selecting their row from the database by their id number.
+
+      # I (Emanuel) had to add an hp column to #find in order to get the tests to pass
       @sql_runner.execute_create_hp_column
+
       Pokemon.save("Pikachu", "electric", @db)
 
       pikachu_from_db = Pokemon.find(1, @db)
@@ -67,7 +70,7 @@ describe "Pokemon" do
     end
 
     # Now we alter Magikarp's hp
-    xit "alters Magikarp's hp" do
+    it "alters Magikarp's hp" do
       magikarp.alter_hp(0, @db)
       expect(Pokemon.find(2, @db).hp).to eq(0)
     end
