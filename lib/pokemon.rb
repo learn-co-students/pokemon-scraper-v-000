@@ -16,7 +16,7 @@ class Pokemon
   def self.find(id, db)
     sql = "SELECT * FROM pokemon WHERE id = ?"
     row = db.execute(sql, id).flatten 
-    Pokemon.new(id: row[0], name: [1], type: [2], db: db)
+    Pokemon.new(id: row[0], name: row[1], type: row[2], db: db)
   end 
 
 end
