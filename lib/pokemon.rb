@@ -6,8 +6,8 @@ class Pokemon
     @id = id 
     @name = name
     @type = type
-    @db = db
     @hp = hp 
+    @db = db
   end 
   
   def self.save(name, type, db)
@@ -17,7 +17,7 @@ class Pokemon
   def self.find(id, db)
     sql = "SELECT * FROM pokemon WHERE id = ?"
     row = db.execute(sql, id).flatten 
-    Pokemon.new(id: row[0], name: row[1], type: row[2], hp: row[3] db: db)
+    Pokemon.new(id: row[0], name: row[1], type: row[2], hp: row[3], db: db)
   end
   
   def alter_hp(new_hp, db)
