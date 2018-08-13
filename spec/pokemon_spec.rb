@@ -91,5 +91,4 @@ describe "Pokemon" do
 # #       magikarp.alter_hp(0, @db)
 # #       expect(Pokemon.find(2, @db).hp).to eq(0)
 # #     end
-# #   end
-# # end
+  end

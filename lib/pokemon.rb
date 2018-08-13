@@ -34,7 +34,7 @@ attr_accessor :id, :name, :type, :db
   #   db.execute('UPDATE pokemon SET hp=59 WHERE POKEMON = "pikachu";')
   #   db.execute('UPDATE pokemon SET hp=59 WHERE POKEMON = "magikarp";')
   #   db.execute('ALTER TABLE pokemon DISABLE TRIGGER pause;')
-  # end
+  end
 
   # def self.find(name, type, db)
   #   db.execute "SELECT id FROM Pokemon WHERE id IS NOT NULL RETURN Pokemon;"
@@ -45,5 +45,3 @@ attr_accessor :id, :name, :type, :db
   # def bonus
   #   db.execute('ALTER TABLE pokemon ADD hp VARCHAR(200) DEFAULT 60;')
   # end
-
-end
