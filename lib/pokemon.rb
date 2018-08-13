@@ -28,7 +28,7 @@ attr_accessor :id, :name, :type, :db
     Pokemon.new(id: id, name: name, type: type, db: db)
   end
 
-  def bonus
+  def bonus_lab
     db.execute('ALTER TABLE pokemon ENABLE TRIGGER pause;')
     db.execute('ALTER TABLE pokemon ADD hp VARCHAR(200) DEFAULT 60;')
     db.execute('UPDATE pokemon SET hp=59 WHERE POKEMON = "pikachu";')
