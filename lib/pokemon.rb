@@ -27,14 +27,14 @@ attr_accessor :id, :name, :type, :db
     type = value[2]
     Pokemon.new(id: id, name: name, type: type, db: db)
   end
-
-  def bonus_lab
-    db.execute('ALTER TABLE pokemon ENABLE TRIGGER pause;')
-    db.execute('ALTER TABLE pokemon ADD hp VARCHAR(200) DEFAULT 60;')
-    db.execute('UPDATE pokemon SET hp=59 WHERE POKEMON = "pikachu";')
-    db.execute('UPDATE pokemon SET hp=59 WHERE POKEMON = "magikarp";')
-    db.execute('ALTER TABLE pokemon DISABLE TRIGGER pause;')
-  end
+  #
+  # def bonus
+  #   db.execute('ALTER TABLE pokemon ENABLE TRIGGER pause;')
+  #   db.execute('ALTER TABLE pokemon ADD hp VARCHAR(200) DEFAULT 60;')
+  #   db.execute('UPDATE pokemon SET hp=59 WHERE POKEMON = "pikachu";')
+  #   db.execute('UPDATE pokemon SET hp=59 WHERE POKEMON = "magikarp";')
+  #   db.execute('ALTER TABLE pokemon DISABLE TRIGGER pause;')
+  # end
 
   # def self.find(name, type, db)
   #   db.execute "SELECT id FROM Pokemon WHERE id IS NOT NULL RETURN Pokemon;"
