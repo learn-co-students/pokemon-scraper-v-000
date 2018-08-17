@@ -1,0 +1,1 @@
+ALTER TABLE pokemon ADD hp DEFAULT(60);
