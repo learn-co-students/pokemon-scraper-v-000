@@ -15,12 +15,11 @@ class Pokemon
 
 	def self.find(id, db)
 		pokemon_deets = db.execute("SELECT * FROM pokemon WHERE id = ?", id).flatten
-		Pokemon.new(id: pokemon_deets[0], name: pokemon_deets[1], type: pokemon_deets[2], db: db)
+		Pokemon.new(id: pokemon_deets[0], name: pokemon_deets[1], type: pokemon_deets[2], hp: pokemon_deets[3], db: db)
 	end 
 
 	def alter_hp(hp, db) 
 		db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", hp, self.id)
-		binding.pry
 	end
 
 end
