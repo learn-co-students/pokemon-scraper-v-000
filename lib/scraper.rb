@@ -1,4 +1,5 @@
 class Scraper
+  #why does the scraper need a db attribute as well? because of the scrape method below that uses the db argument
   attr_accessor :file, :parsed_file, :all_pokemon, :db
 
   def initialize(db)
