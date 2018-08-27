@@ -19,4 +19,6 @@ Pokemon.new(id: pokemon_by_id[0], name: pokemon_by_id[1], type: pokemon_by_id[2]
 end
 
 
+
+
 end
