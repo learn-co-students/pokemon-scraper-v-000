@@ -39,8 +39,10 @@ describe "Pokemon" do
       expect(pikachu_from_db.type).to eq("electric")
     end
   end
+end
 
-  describe "BONUS" do
+=begin
+ describe "BONUS" do
 
     before do
       @sql_runner.execute_create_hp_column
@@ -72,3 +74,4 @@ describe "Pokemon" do
     end
   end
 end
+=end
