@@ -39,7 +39,8 @@ describe "Pokemon" do
       expect(pikachu_from_db.type).to eq("electric")
     end
   end
-
+end
+=begin
   describe "BONUS" do
 
     before do
@@ -72,3 +73,4 @@ describe "Pokemon" do
     end
   end
 end
+=end
