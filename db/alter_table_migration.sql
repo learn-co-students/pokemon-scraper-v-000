@@ -1,0 +1,13 @@
+ALTER TABLE pokemon
+ADD hp integer;
+
+ALTER TABLE {TABLENAME}
+ADD {COLUMNNAME} {TYPE} {NULL|NOT NULL}
+CONSTRAINT {CONSTRAINT_NAME} DEFAULT {DEFAULT_VALUE}
+
+
+
+
+UPDATE pokemon
+SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
+WHERE CustomerID = 1;
