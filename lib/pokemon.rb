@@ -15,10 +15,12 @@ class Pokemon
   end
   
   def self.find(id, db)
-    pokemon_name = db.execute("SELECT pokemon.name FROM pokemon WHERE id = #{id}").flatten[0]
-    pokemon_type = db.execute("SELECT pokemon.type FROM pokemon WHERE id = #{id}").flatten[0]
-    
-    pokemon = {id: id, name: pokemon_name, type: pokemon_type, db: db}
+    pokemon = {
+      :id => id,
+      :name => pokemon_name = db.execute("SELECT pokemon.name FROM pokemon WHERE id = #{id}").flatten[0],
+      :type => pokemon_type = db.execute("SELECT pokemon.type FROM pokemon WHERE id = #{id}").flatten[0],
+      :db => db
+    }
     self.new(pokemon)
   end
 end
