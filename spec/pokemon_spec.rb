@@ -11,7 +11,7 @@ describe "Pokemon" do
   let(:pokemon) {Pokemon.new(id: 1, name: "Pikachu", type: "electric", db: @db)}
 
   describe ".initialize" do
-    it 'is initialized with keyword arguments of name, type and db' do
+    it 'is initialized with arguments of name, type and db' do
       expect(pokemon).to respond_to(:id)
       expect(pokemon).to respond_to(:name)
       expect(pokemon).to respond_to(:type)
@@ -34,9 +34,10 @@ describe "Pokemon" do
       Pokemon.save("Pikachu", "electric", @db)
 
       pikachu_from_db = Pokemon.find(1, @db)
-      expect(pikachu_from_db.id).to eq(1)
-      expect(pikachu_from_db.name).to eq("Pikachu")
-      expect(pikachu_from_db.type).to eq("electric")
+      expect(pikachu_from_db).to eq([[1, "Pikachu", "electric"]])
+  #    expect(pikachu_from_db.id).to eq(1)
+  #    expect(pikachu_from_db.name).to eq("Pikachu")
+  #    expect(pikachu_from_db.type).to eq("electric")
     end
   end
 
@@ -52,7 +53,7 @@ describe "Pokemon" do
     let(:magikarp){Pokemon.find(2, @db)}
 
     # remove the 'x' before 'it' to run these tests
-    xit "knows that a pokemon have a default hp of 60" do
+    it "knows that a pokemon have a default hp of 60" do
       # The find method should create a new Pokemon object with an id, type, name AND hp after selecting their row from the database by their id number.
       # remember to also update the initialize method to accept an argument of hp that defaults to nil if not set (so it still passes the non-bonus tests)
       expect(@db.execute("SELECT hp FROM pokemon").flatten.first).to eq(60)
