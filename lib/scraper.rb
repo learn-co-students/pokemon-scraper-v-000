@@ -4,7 +4,7 @@ class Scraper
   def initialize(db)
     self.db = db
     self.file = File.open("pokemon_index.html")
-    self.parsed_file = Nokogiri::HTML.parse(file)
+    self.parsed_file = Nokogiri::HTML(self.file)
     self.all_pokemon = catch_em_all
   end
 
@@ -24,7 +24,7 @@ class Scraper
     all_pokemon.each do |pk_node|
       pk_name = get_pokemon_name_from(pk_node)
       pk_type = get_pokemon_type_from(pk_node)
-      Pokemon.save(pk_name, pk_type, db)
+      Pokemon.save(pk_name, pk_type, @db)
     end
   end
 
