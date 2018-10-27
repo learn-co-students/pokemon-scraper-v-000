@@ -16,10 +16,8 @@ class Pokemon
     # self.save(@id, @name, @type, @db)
   end
 
-  def self.save(db, name, type)
-    # @@all << self
-    # binding.pry
-    @db.execute("INSERT INTO Pokemon (db, name, type) VALUES (db, name, type)")
+  def self.save(name, type, db)
+    db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type )
   end
 
 end
