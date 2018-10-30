@@ -1,4 +1,6 @@
 class Scraper
+
+
   attr_accessor :file, :parsed_file, :all_pokemon, :db
 
   def initialize(db)
@@ -19,6 +21,8 @@ class Scraper
   def get_pokemon_type_from(node)
     node.css(".itype").text
   end
+
+  #takes the raw pokemon data from the webpage, and iterates over each set, saving a new pokemon object with a name, and type for each set of data
 
   def scrape
     all_pokemon.each do |pk_node|

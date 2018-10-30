@@ -1,4 +1,6 @@
 class Pokemon
+
+
   attr_accessor :id, :name, :type, :db, :hp
 
   @@all = []
@@ -7,33 +9,39 @@ class Pokemon
     @@all
   end
 
-  def initialize(id:, name:, type:, db:, hp: nil)
+  #can create a new Pokemon object with keyword arguments to ensure data is input in the right order, then pushes pokemon object into a class variable
+
+  def initialize(id:, name:, type:, db:, hp: 60)
     @id = id
     @name = name
     @type = type
     @db = db
-    @hp = 60
+    @hp = hp
     @@all << self
-    # self.save(@id, @name, @type, @db)
   end
+
+  #creates a new pokemon instance and saves it's data into a given database in the form of a new row
 
   def self.save(name, type, db)
-    db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type )
+    db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)", name, type)
   end
 
+#this might break if we add or delete columns from db at some point... how can i fix that?
+#finds the pokemon in a db with the given id, and creates a new pokemon object utilising the data maintained in the database
   def self.find(id, db)
-    self.all.detect do |pokemon|
-      if pokemon.id == id
-        # binding.pry
-        self.new(id: pokemon.id, name: pokemon.name, type: pokemon.type, db: pokemon.db, hp: pokemon.hp)
-        db.execute("INSERT INTO pokemon (id, name, type) VALUES (?, ?, ?);")
-        # self.save(pokemon.name, pokemon.type, pokemon.db)
-      end
-    end
+    pokemon = db.execute("SELECT * FROM pokemon WHERE id = ?", id)
+    Pokemon.new(id: id, name: pokemon[0][1], type: pokemon[0][2], db: db, hp: 60)
   end
 
+#finds pikachu in db, creates a new pikachu object, changes pikachu's hp property (in the database by utilizing the above #find method), then updates the db with new hp info
   def alter_hp(new_hp, db)
-    db.execute("UPDATE pokemon SET hp = #{hp - new_hp} WHERE hp = hp")
+    # binding.pry
+    # db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, self.id)
+    # binding.pry
+    hurt_pokemon = Pokemon.find(self.id, db)
+    hurt_pokemon.hp = new_hp
+    Pokemon.save(hurt_pokemon.name, hurt_pokemon.type, hurt_pokemon.db)
+    binding.pry
   end
 
 end
