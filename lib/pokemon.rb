@@ -33,15 +33,11 @@ class Pokemon
     Pokemon.new(id: id, name: pokemon[0][1], type: pokemon[0][2], db: db, hp: 60)
   end
 
-#finds pikachu in db, creates a new pikachu object, changes pikachu's hp property (in the database by utilizing the above #find method), then updates the db with new hp info
+#finds the object with the name "pikachu" in our Pokemon class, changes pikachu's hp property
   def alter_hp(new_hp, db)
-    # binding.pry
-    # db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, self.id)
-    # binding.pry
-    hurt_pokemon = Pokemon.find(self.id, db)
-    hurt_pokemon.hp = new_hp
-    Pokemon.save(hurt_pokemon.name, hurt_pokemon.type, hurt_pokemon.db)
-    binding.pry
+    Pokemon.all.detect do |pokemon| pokemon.id == 1
+      pokemon.hp = new_hp
+    end
   end
 
 end
