@@ -4,7 +4,7 @@ class Pokemon
 
   @@all = []
 
-  def initialize(id:, name:, type:, db:)
+  def initialize(id:, name:, type:, db:, hp: nil)
     @id = id
     @name = name
     @type = type
@@ -26,8 +26,7 @@ class Pokemon
     new_id = new_pokemon[0][0]
     name = new_pokemon[0][1]
     type =   new_pokemon[0][2]
-
-    Pokemon.new(id: new_id,name: name,type: type, db: db)
+    Pokemon.new(id: new_id,name: name,type: type, db: db, hp: 60)
   end
 
 
