@@ -1,16 +1,14 @@
 require 'pry'
-#For our purposes the Pokemon class is responsible for saving, adding, 
-#removing, or changing anything about each Pokémon. Your scraper is not 
-#responsible for knowing anything about them.
+
 class Pokemon
   attr_accessor :id, :name, :type, :hp, :db
 
-  def initialize(id:, name:, type:, hp: nil, db:)
+  def initialize(id:, name:, type:, hp: 60, db:)
     @id = id
     @name = name
     @type = type
-    @db = db
     @hp = hp
+    @db = db
   end
 
   def self.save(name, type, db)
@@ -18,12 +16,12 @@ class Pokemon
   end
 
   def self.find(id, db)
-    new_pokemon = db.execute("SELECT * FROM pokemon WHERE id = (?)", [id]).flatten
-    Pokemon.new(id: new_pokemon[0], name: new_pokemon[1], type: new_pokemon[2], db: db)
+    new_pokemon = db.execute("SELECT * FROM pokemon WHERE id = ?", id).flatten
+    Pokemon.new(id: new_pokemon[0], name: new_pokemon[1], type: new_pokemon[2], hp: new_pokemon[3], db: db)
   end
 
   def alter_hp(new_hp, db)
-    db.execute("UPDATE pokemon SET hp = (?) WHERE id = (?)", [new_hp, self.id])
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, self.id)
   end
 
 end
