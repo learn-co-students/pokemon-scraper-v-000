@@ -1,4 +1,5 @@
 require_relative "environment"
+require "pry"
 
 Scraper.new(@db).scrape
 
