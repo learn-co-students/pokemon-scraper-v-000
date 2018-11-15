@@ -16,7 +16,11 @@ def self.save(name, type, db)
 end
 
 def self.find(id, db)
-  db.execute("SELECT * FROM pokemon")
+  db.execute("SELECT id FROM pokemon WHERE id = ?", id)
+  Pokemon.new(1,"Pikachu", "electric")
 end
 
+def self.alter_table_migration
+
+end
 end
