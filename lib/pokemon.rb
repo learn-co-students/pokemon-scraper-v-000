@@ -10,4 +10,14 @@ class Pokemon
     #@@all << self
   end
 
+  def self.find(id,db)
+
+  end
+
+  def self.save(name, type, db)
+    db.execute("INSERT INTO pokemon (name, type) VALUES ('#{name}', '#{type}')")
+    #@db.execute("INSERT * FROM pokemon WHERE name = 'Pikachu
+    #INSERT INTO table_name (column1, column2, column3, ...) VALUES (value1, value2, value3, ...);
+  end
+
 end
