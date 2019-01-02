@@ -2,14 +2,14 @@ class Pokemon
 
   attr_accessor :id, :name, :type, :db
 
-@@all = []
 
-def initialize(keywords)
+
+def initialize(id:, name:, type:, db:)
 
 end
 
-def self.save(id, name, type)
-
+def self.save(name, type, db)
+db.execute("INSERT INTO pokemon (name, type) VALUES (?, ?)",name, type)
 end
 
 end
