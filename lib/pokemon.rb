@@ -25,6 +25,4 @@ class Pokemon
     db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", hp, self.id)
   end
   
-    #   expect(@db.execute("SELECT hp FROM pokemon").flatten.first).to eq(60)
-  
 end
