@@ -13,3 +13,5 @@ require_relative "sql_runner"
 @sql_runner = SQLRunner.new(@db)
 @sql_runner.execute_schema_migration_sql
 @sql_runner.execute_create_hp_column
+
+
