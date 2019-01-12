@@ -14,7 +14,7 @@ attr_accessor :id, :name, :type, :db, :hp
 
   def self.save(name, type, db)
    db.execute("INSERT INTO pokemon(name, type) VALUES(?, ?)", name, type)
- end
+  end
 
   def self.find(id_number, db)
     pokemon_find = db.execute("SELECT * FROM pokemon WHERE id=?", id_number).first
@@ -22,7 +22,7 @@ attr_accessor :id, :name, :type, :db, :hp
   end
 
   def alter_hp(health, db)
-    db.execute("UPDATE pokemon SET hp=? WHERE id=?", health, @id).flatten
+    db.execute("UPDATE pokemon SET hp=? WHERE id=?", health, id)
   end
 
 end #ends class
