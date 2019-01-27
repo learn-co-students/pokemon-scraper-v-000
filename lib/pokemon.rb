@@ -8,7 +8,7 @@ class Pokemon
     @id = id #primary key for object
     @name = name
     @type = type
-    @hp = 60
+    @hp = hp
     @db = db
     @@all << self
   end
@@ -26,11 +26,12 @@ class Pokemon
   
   def self.find(id, db)
     row = db.execute("SELECT * FROM pokemon WHERE id = (?)", id).flatten
-    pokemon = Pokemon.new(id: row[0], name: row[1], type: row[2], db: db)
+    pokemon = Pokemon.new(id: row[0], name: row[1], type: row[2], db: db, hp: row[3])
   end
   
-  def alter_hp(hp, db)
-    pokemon = Pokemon.find(id, db)
-    binding.pry
+  def alter_hp(new_hp, db)
+    row = Pokemon.find(id, db)
+    db.execute("UPDATE pokemon SET hp = #{new_hp} WHERE id = (?)", id)
+    db.execute("SELECT * FROM pokemon WHERE id = (?)", id).flatten
   end
 end
