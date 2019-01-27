@@ -8,7 +8,7 @@ class Pokemon
     @id = id #primary key for object
     @name = name
     @type = type
-    @hp = nil
+    @hp = 60
     @db = db
     @@all << self
   end
@@ -29,8 +29,8 @@ class Pokemon
     pokemon = Pokemon.new(id: row[0], name: row[1], type: row[2], db: db)
   end
   
-  # def 
-  #   db.execute("ALTER TABLE pokemon ADD COLUMN hp INTEGER DEFAULT(60)")
-  # end
+  def alter_hp(hp, db)
+    pokemon = Pokemon.find(id, db)
+    binding.pry
+  end
 end
- 
