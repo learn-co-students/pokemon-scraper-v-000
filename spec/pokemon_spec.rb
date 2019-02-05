@@ -31,6 +31,7 @@ describe "Pokemon" do
   describe ".find" do
     it 'finds a pokemon from the database by their id number and returns a new Pokemon object' do
       # The find method creates a new Pokemon after selecting their row from the database by their id number.
+      @sql_runner.execute_create_hp_column
       Pokemon.save("Pikachu", "electric", @db)
 
       pikachu_from_db = Pokemon.find(1, @db)
@@ -42,7 +43,7 @@ describe "Pokemon" do
 
   describe "BONUS" do
 
-    before do
+    before(:each) do
       @sql_runner.execute_create_hp_column
       Pokemon.save('Pikachu', 'electric', @db)
       Pokemon.save('Magikarp', 'water', @db)

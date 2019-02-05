@@ -4,13 +4,12 @@ class Pokemon
   
   @@all = []
   
-  def initialize(id: 1, name: "Pikachu", type: "electric", db: @db, hp: nil)
+  def initialize(id:, name:, type:, db: @db, hp:nil)
     @id = id
     @name = name
     @type = type
     @db = db
     @hp = hp
-    @@all << self
   end
 
   def self.save(name, type, db)
@@ -21,7 +20,8 @@ class Pokemon
     poke_name = db.execute("SELECT name FROM pokemon WHERE id = ?", id)
     poke_type = db.execute("SELECT type FROM pokemon WHERE id = ?", id)
     poke_hp = db.execute("SELECT hp FROM pokemon WHERE id = ?", id)
-    self.new(id: id, name: poke_name[0][0], type: poke_type[0][0], hp: poke_hp)
+
+    self.new(id: id, name: poke_name[0][0], type: poke_type[0][0], hp: poke_hp[0][0])
   end
   
   def alter_hp(new_hp, db)
