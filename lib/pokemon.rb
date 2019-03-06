@@ -1,11 +1,11 @@
 class Pokemon
   attr_reader :id, :name, :type, :db, :hp
 
-  def initialize(id:, name:, type:, db:, hp:)
+  def initialize(id:, name:, type:, db:)
     @id = id
     @name = name
     @type = type
-    @hp = 60
+    @hp = hp
     @db = db
   end
 
@@ -18,8 +18,7 @@ class Pokemon
     new(id: pikachu_from_db[0], name: pikachu_from_db[1], type: pikachu_from_db[2], db:db )
   end
 
-  #def self.alter_hp(new_hp, db)
-    #db.excute("UPDATE pokemon SET hp = ?", [num], [self.id])
-    #self.hp = num
-  end
+  #def alter_hp(new_hp, db)
+    #db.execute(what goes here lord?)
+  #end
 end
