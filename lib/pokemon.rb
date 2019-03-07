@@ -1,7 +1,7 @@
 class Pokemon
   attr_reader :id, :name, :type, :db, :hp
 
-  def initialize(id:, name:, type:, db:)
+  def initialize(id:, name:, type:, db:, hp: nil)
     @id = id
     @name = name
     @type = type
@@ -14,11 +14,15 @@ class Pokemon
   end
 
   def self.find(id, db)
-    pikachu_from_db = db.execute("SELECT id, name, type FROM pokemon WHERE id = ?",id).first
-    new(id: pikachu_from_db[0], name: pikachu_from_db[1], type: pikachu_from_db[2], db:db )
+    pokemon_from_db = db.execute("SELECT * FROM pokemon WHERE id = ?",id).first
+    new(id: pokemon_from_db[0],
+        name: pokemon_from_db[1],
+        type: pokemon_from_db[2],
+        hp: pokemon_from_db[3],
+        db:db )
   end
 
-  #def alter_hp(new_hp, db)
-    #db.execute(what goes here lord?)
-  #end
+  def alter_hp(new_hp, db)
+    db.execute("UPDATE pokemon SET hp = ? WHERE id = ?", new_hp, id )
+  end
 end
