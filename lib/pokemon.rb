@@ -2,8 +2,11 @@ class Pokemon
 
   attr_accessor :id, :name, :type, :db
 
-  def initialize(id: nil, name:, type:, db:)
-
+  def initialize(id:, name:, type:, db:)
+    @id = id
+    @name = name
+    @type = type
+    @db = db
   end
 
   def self.save(name, type, db)
@@ -13,11 +16,8 @@ class Pokemon
   end
 
   def self.find(id, db)
-    sql = "SELECT * FROM ? WHERE id = ? LIMIT 1"
-
-    db.execute(sql, db, id).each do |row|
-      Pokemon.new(row[0], row[1], row[2], db)
-    end.first
+    row = db.execute("SELECT * FROM pokemon WHERE id = ?", id).flatten
+    Pokemon.new(id: row[0], name: row[1], type: row[2], db: db)
   end
 
 end
