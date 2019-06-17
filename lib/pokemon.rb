@@ -1,24 +1,46 @@
 class Pokemon
-  attr_accessor :name, :id, :type, :db
+  require 'pry'
+  attr_accessor :name, :id, :type, :db, :hp
 
   def initialize(id:, name:, type:, db:)
     @id = id
     @name = name
     @type = type
     @db = db
+    #@hp = hp
   end
 
-  def self.save
+  def self.save(name, type, db)
     sql = <<-SQL
-      INSERT INTO pokemons (name, type)
+      INSERT INTO pokemon (name, type)
       VALUES (?, ?)
     SQL
 
-    @db[:conn].execute(sql, self.name, self.type)
+    db.execute(sql, name, type)
 
-    @id = DB[:conn].execute("SELECT last_insert_rowid() FROM pokemons")[0][0][0]
   end
 
-  def find
+  def self.find(id, db)
+    sql = <<-SQL
+      SELECT *
+      FROM pokemon
+      WHERE id = ?
+    SQL
+
+    pokemon = db.execute(sql, id).flatten
+    #binding.pry
+    Pokemon.new(id: pokemon[0], name: pokemon[1], type: pokemon[2], db: db)
+    #new_pokemon.id = pokemon[0]
+    #new_pokemon.name = pokemon[1]
+    #new_pokemon.type = pokemon[2]
+    #new_pokemon
+      #binding.pry
+  end
+
+  def alter_hp(new_hp, db)
+    sql = <<-SQL
+      UPDATE pokemon SET hp = ? WHERE id = ?
+    SQL
+    db.execute(sql, [new_hp, self.id])
   end
 end
