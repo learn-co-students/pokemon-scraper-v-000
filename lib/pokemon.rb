@@ -21,37 +21,37 @@ class Pokemon
     db.execute(sql, name, type)
   end
 
-  # def self.find(id, db)
-  #   sql = <<-SQL
-  #   SELECT * FROM pokemon WHERE id = ?
-  #   SQL
-  #   x = db.execute(sql, id)
-  #   x = x.flatten
-  #   Pokemon.new(x)
-  #   x.id =
-  #
-  # end
-
   def self.find(id, db)
-   sql = <<-SQL
-     SELECT * FROM pokemon WHERE id = (?);
-   SQL
-   pokemon = db.execute(sql, [id]).flatten
-   Pokemon.new(id, pokemon[1], pokemon[2], pokemon[3], db )
+    sql = <<-SQL
+    SELECT * FROM pokemon WHERE id = ?
+    SQL
+    x = db.execute(sql,id)
+    x = x.flatten
+    
+    Pokemon.new(id: x[0],name: x[1],type: x[2],db: db)
   end
-  # def self.find(id, db)
-  #   sql = <<-SQL
-  #   SELECT * FROM pokemon WHERE id = ?
-  #   SQL
-  #   x = db.execute(sql,id)
-  #   x = x.flatten
-  #   Pokemon.new(id, x[1], x[2], x[3])
-
+end
     # id = x[0]
     # name = x[1]
     # type = x[2]
     # db = x[3]
     # return x
+    # def self.find(id, db)
+    #  sql = <<-SQL
+    #    SELECT * FROM pokemon WHERE id = (?);
+    #  SQL
+    #  pokemon = db.execute(sql, [id]).flatten
+    #  Pokemon.new(id, pokemon[1], pokemon[2], pokemon[3], db )
+    # end
 
 
-end
+      # def self.find(id, db)
+      #   sql = <<-SQL
+      #   SELECT * FROM pokemon WHERE id = ?
+      #   SQL
+      #   x = db.execute(sql, id)
+      #   x = x.flatten
+      #   Pokemon.new(x)
+      #   x.id =
+      #
+      # end
