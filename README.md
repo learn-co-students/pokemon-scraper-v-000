@@ -22,10 +22,17 @@ to be acted upon. Classes acting together is the heart of object orientation.
 
 ### Note
 
-We have set up your scraper class for you, which you can see in
-`lib/scraper.rb`. We have also created a `schema_migration.sql` file that will
-run the `SQL` statement to set up your database in `db/pokemon.db`. Your only
-job is to build out the methods to save and find Pokémon in the database.
+We have set up your scraper class for you in `lib/scraper.rb`.
+
+We have also created a `db/schema_migration.sql` file that will run the `SQL`
+statement to set up your database in `db/pokemon.db`. You should make sure that
+your database is located in the `db` directory (it's at the top of the
+`db/schema_migration.sql` file, but it's easy to miss). We can tell Sqlite3 to
+execute a migration script into a new database with commands looking like:
+`sqlite3 path/to/database.db < source_of_sql_data`.
+
+***Your*** job is to write the methods to save and find Pokémon in the
+database. You're going to create that "in-between" code.
 
 ### Create Our Pokemon Class
 
