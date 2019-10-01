@@ -8,12 +8,17 @@
 
 ### Overview
 
-In this lab, you will set up your schema, scrape data, insert it into your db
-and then build out methods to manipulate your data.
+In this lab, you will:
 
-For our purposes, the `Pokemon` class is responsible for saving, adding,
-removing, or changing anything about each Pokémon. Your scraper is not
-responsible for knowing anything about them.
+1. Set up your schema
+2. Scrape data
+3. Insert it into your db
+4.  Build out methods to manipulate your data.
+
+The `Pokemon` class is responsible for saving, adding, removing, or changing
+anything about each Pokémon. Your scraper should not know anything about them.
+It should find Pokémon data and then had that "raw" data to the `Pokemon` class
+to be acted upon. Classes acting together is the heart of object orientation.
 
 ### Note
 
