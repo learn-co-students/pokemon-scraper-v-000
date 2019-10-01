@@ -2,7 +2,7 @@
 
 ## Objectives
 
-- Set up a `SQLite` database
+- Set up an `SQLite` database
 - Scrape and save data into your database
 - Use data to make ruby objects
 
