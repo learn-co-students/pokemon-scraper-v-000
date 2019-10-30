@@ -12,7 +12,7 @@ In this lab, you will:
 
 1. Set up your schema
 2. Scrape data
-3. Insert it into your db
+3. Insert it into your database
 4. Build out methods to manipulate your data.
 
 This mirrors a very "real world" task.
@@ -37,15 +37,15 @@ command like: `sqlite3 path/to/database.db < source_of_sql_data`.
 
 ## Scraper and Scrape-Content Provided
 
-In this example, we're going to take information from a we page about those
+In this example, we're going to take information from a web page about those
 adorable Pokémon. Instead of having you write a network code that retrieves a
 Pokémon catalog and scrapes it, we're going to provide you a "scraper" class in
 `lib/scraper.rb` and it's going to "scrape" a local HTML file
 (`pokemon_index.html`). It shouldn't be too hard to see that with just a
 _little_ bit of extra code we could scrape a "live" web page.
 
-Your scraper **should not** do the work around inserting rows into the
-database. Its role is to process the file, it should "hand off" the creation
+Your scraper **should not** do the work of inserting rows into the database.
+Its role is to process the file, it should "hand-off" the creation
 responsibilities to the Pokemon class. It's appropriate for the scraper to say
 `Pokemon.create...` but it's not appropriate for the scraper to open up a
 connection to the database.
