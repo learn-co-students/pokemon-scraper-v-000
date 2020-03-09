@@ -18,7 +18,8 @@ In this lab, you will:
 This mirrors a very "real world" task.
 
 1. Set up a local database schema
-2. Find something on the internet that you want to capture to _your_ local database (copyright etc. permitting) and "scrape it"
+2. Find something on the internet that you want to capture to _your_ local 
+   database (copyright etc. permitting) and "scrape it"
 3. For each interesting thing found on the internet...
 4. Insert its information into your local database's schema by writing methods
 5. _...and then_ write additional methods to your classes so that you can
