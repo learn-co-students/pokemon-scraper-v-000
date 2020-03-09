@@ -4,4 +4,3 @@ tags:
   - sql
 languages:
   - ruby
-  - sqlite3
