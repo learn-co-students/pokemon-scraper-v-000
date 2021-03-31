@@ -18,7 +18,10 @@ class Pokemon
       SQL
       db.execute(sql, name, type)
       @id = db.execute("SELECT last_insert_rowid() FROM pokemon")[0][0]
-      binding.pry
+  end
+
+  def self.find(id, db)
+
   end
 
   def self.create_table
@@ -33,7 +36,7 @@ class Pokemon
       @db.execute(sql)
   end
 
-  def self.create(name:, type:)
+  def self.create(name, type)
     pokemon = Scraper.scrape
     pokemon.save
     pokemon
