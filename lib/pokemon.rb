@@ -11,6 +11,16 @@ class Pokemon
     @db = db
   end
 
+  def self.save(name, type, db)
+      sql = <<-SQL
+        INSERT INTO pokemon (name, type)
+        VALUES (?, ?)
+      SQL
+      db.execute(sql, name, type)
+      @id = db.execute("SELECT last_insert_rowid() FROM pokemon")[0][0]
+      
+  end
+
   def self.create_table
     sql = <<-SQL
       CREATE TABLE IF NOT EXISTS pokemon (
@@ -23,32 +33,10 @@ class Pokemon
       @db.execute(sql)
   end
 
-  def self.drop_table
-    sql = <<-SQL
-      DROP TABLE IF EXISTS pokemon
-      SQL
-
-      @db.execute(sql)
-  end
-
-  def save
-    if self.id
-      self.update
-    else
-      sql = <<-SQL
-        INSERT INTO pokemon (name, type)
-        VALUES (?, ?)
-      SQL
-
-      @db.execute(sql, self.name, self.type)
-      @id = @db.execute("SELECT last_insert_rowid() FROM pokemon")[0][0]
-    end
-  end
-
   def self.create(name:, type:)
-    pokemon = Pokemon.new(name, type)
+    pokemon = Scraper.scrape
     pokemon.save
-    pokemon 
+    pokemon
   end
 
   def update
