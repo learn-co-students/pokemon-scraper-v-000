@@ -32,9 +32,7 @@ class Pokemon
       WHERE id = ?
       SQL
 
-      db.execute(sql, id).map do |row|
-        self.new
-      end
+      row = db.execute(sql, id)
       binding.pry
   end
 
