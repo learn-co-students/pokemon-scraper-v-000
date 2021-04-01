@@ -20,8 +20,21 @@ class Pokemon
       @id = db.execute("SELECT last_insert_rowid() FROM pokemon")[0][0]
   end
 
-  def self.find(id, db)
+#   def self.new_from_db(row)
+#     new_pokemon = self.new(row[0], row[1], row[2], row[3])
+    
+#   end
 
+  def self.find(id, db)
+    sql = <<-SQL
+      SELECT *
+      FROM pokemon
+      WHERE id = ?
+      SQL
+
+      db.execute(sql, id).map do |row|
+        new_pokemon = self.new(row[0], row[1], row[2], row[3])
+      end
   end
 
   def self.create_table
