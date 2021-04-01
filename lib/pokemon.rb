@@ -33,35 +33,11 @@ class Pokemon
       SQL
 
       db.execute(sql, id).map do |row|
-        new_pokemon = self.new(row[0], row[1], row[2], row[3])
+        self.new
       end
+      binding.pry
   end
 
-  def self.create_table
-    sql = <<-SQL
-      CREATE TABLE IF NOT EXISTS pokemon (
-        id INTEGER PRIMARY KEY,
-        name TEXT,
-        type TEXT
-      )
-      SQL
-
-      @db.execute(sql)
-  end
-
-  def self.create(name, type)
-    pokemon = Scraper.scrape
-    pokemon.save
-    pokemon
-  end
-
-  def update
-    sql = <<-SQL
-      UPDATE pokemon SET name = ?, type = ?
-      WHERE id = ?
-      SQL
-
-      @db.execute(sql, self.name, self.type, self.id)
-  end
+ 
 
 end
