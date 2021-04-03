@@ -17,22 +17,22 @@ class Pokemon
         VALUES (?, ?)
       SQL
       db.execute(sql, name, type)
-      @id = db.execute("SELECT last_insert_rowid() FROM pokemon")[0][0]
+      id = db.execute("SELECT last_insert_rowid() FROM pokemon")[0][0]
+     
   end
 
-  def self.new_from_db(row)
-    new_pokemon = self.new(row[0], row[1], row[2], row[3])
-  end
+  
 
   def self.find(id, db)
     sql = <<-SQL
       SELECT *
       FROM pokemon
       WHERE id = ?
-      SQL
+    SQL
 
-      result = db.execute(sql, id)[0]
-      
-     binding.pry
+      row = db.execute(sql, id)[0]
+        new_pokemon = self.new(id: row[0], name: row[1], type: row[2], db: row[3])
+    
+    #   binding.pry
   end
 end
